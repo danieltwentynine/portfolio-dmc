@@ -1,5 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import Header from "./components/Header";
+import Hero from "./components/Hero";
 import EstiloGlobal from "./styles/index";
 import variaveis from "./styles/variaveis";
 
@@ -19,6 +20,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <EstiloGlobal />
       <Header />
+      <Hero />
     </ThemeProvider>
   );
 }
