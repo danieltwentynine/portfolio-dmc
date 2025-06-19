@@ -70,6 +70,28 @@ export const DescricaoHero = styled.p`
   }
 `;
 
+export const Avatar = styled.img<{ $background?: boolean }>`
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin-top: 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+`;
+
+export const AvatarBackground = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0.1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const bounce = keyframes`
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);

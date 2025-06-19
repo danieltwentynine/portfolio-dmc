@@ -10,7 +10,7 @@ const ArrowDown: React.FC = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={{
-          marginTop: "180px",
+          marginTop: "400px",
           animation: "bounce 2s infinite",
           opacity: 0.7,
           cursor: "pointer",
