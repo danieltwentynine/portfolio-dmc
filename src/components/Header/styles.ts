@@ -17,7 +17,12 @@ export const ListHeader = styled.ul`
   margin: 0;
   gap: 20px;
   align-items: center;
-`
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+`;
 
 export const ListItem = styled.li`
   margin: 0 60px;
@@ -28,9 +33,20 @@ export const ListItem = styled.li`
 
     &:hover {
       color: ${variaveis.cinza};
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin: 10px 20px;
   }
 `;
 
 export const Logo = styled(CircularText)`
-    margin-top: 20px;
-`
+  margin-top: 20px;
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+`;

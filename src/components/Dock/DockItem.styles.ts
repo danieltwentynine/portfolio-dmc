@@ -26,6 +26,30 @@ export const StyledDockItem = styled(motion.div)<StyledDockItemProps>`
   img {
     color: ${variaveis.preto};
     transition: color 0.2s ease;
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 768px) {
+    height: 40px;
+    border-radius: 20px;
+
+    svg,
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    height: 36px;
+    border-radius: 18px;
+
+    svg,
+    img {
+      width: 18px;
+      height: 18px;
+    }
   }
 `;
 
