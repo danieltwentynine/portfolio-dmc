@@ -1,11 +1,13 @@
-import { TextContainer } from "./styles";
+import { GradientTitle, TextContainer } from "./styles";
 
 
 function Hero() {
     return (
         <TextContainer>
-            Hello World!
-      </TextContainer>
+            <GradientTitle>
+                Hello World!
+            </GradientTitle>
+        </TextContainer>
     );
 }
 

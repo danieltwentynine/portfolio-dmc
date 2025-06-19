@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CircularText from "./CircularText";
+import variaveis from "../../styles/variaveis";
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -23,15 +24,13 @@ export const ListItem = styled.li`
 
   a {
     text-decoration: none;
-    color:#2c2c2c;
-    transition: transform 0.2s ease, color 0.5s ease;
+    color: ${variaveis.branco};
 
     &:hover {
-      transform: scale(1.1);
-      color: #1c4682;
+      color: ${variaveis.cinza};
   }
 `;
 
 export const Logo = styled(CircularText)`
-    margin-top: 40px;
+    margin-top: 20px;
 `

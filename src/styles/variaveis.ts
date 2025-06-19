@@ -2,5 +2,6 @@ export default {
   preto: "#222831",
   branco: "#eeeeee",
   highlightAzul: "#1e549f",
-  cinza: "#e3e3e3",
+  cinza: "#f3f4f6",
+  cinzaEscuro: "#374151",
 };

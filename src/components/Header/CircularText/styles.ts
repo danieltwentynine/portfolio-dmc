@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import variaveis from "../../../styles/variaveis";
 
 interface CircularTextContainerProps {
   $fontSize?: number;
@@ -11,7 +12,7 @@ export const CircularTextContainer = styled(motion.div)<CircularTextContainerPro
   border-radius: 50%;
   position: relative;
   font-weight: bold;
-  color: ${props => props.$color || "#fff"};
+  color: ${variaveis.cinza};
   font-weight: 900;
   text-align: center;
   cursor: pointer;
