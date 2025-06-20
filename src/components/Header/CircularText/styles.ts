@@ -12,7 +12,7 @@ export const CircularTextContainer = styled(motion.div)<CircularTextContainerPro
   border-radius: 50%;
   position: relative;
   font-weight: bold;
-  color: ${variaveis.cinza};
+  color: ${variaveis.branco};
   font-weight: 900;
   text-align: center;
   cursor: pointer;

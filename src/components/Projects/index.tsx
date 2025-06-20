@@ -104,9 +104,9 @@ function Projects() {
         Check out the web apps I've created!
       </Description>
 
-      <CardContainer>
+      <CardContainer id="projects">
         {projects.map(({ image, title, description, tech, link }, index) => (
-          <Card key={index}>
+          <Card key={index} data-aos="zoom-in-up" data-aos-duration="1000">
             <Image src={image} alt={`${title} preview`} />
             <Content>
               <ProjectTitle>{title}</ProjectTitle>

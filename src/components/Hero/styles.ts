@@ -3,19 +3,19 @@ import variaveis from "../../styles/variaveis";
 
 
 export const TextContainer = styled.div`
-  margin-top: 100px;
+  margin-top: 150px;
 
   @media (max-width: 768px) {
-    margin-top: 60px;
+    margin-top: 100px;
   }
 
   @media (max-width: 480px) {
-    margin-top: 40px;
+    margin-top: 50px;
   }
 `;
 
 export const GradientTitle = styled.h1`
-  font-size: 120px;
+  font-size: 140px;
   font-weight: bold;
   background: linear-gradient(to right, #4567fd, #00ffe7);
   background-size: 200% 200%;
@@ -53,13 +53,51 @@ export const DescricaoHero = styled.p`
   color: ${variaveis.branco};
   font-size: 24px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
+
+  span {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: ${variaveis.cinza};
+    padding: 24px;
+    display: block;
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 0;
+    flex-wrap: wrap;
+
+    li {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 100%;
+        max-width: 60px;
+        height: 40px;
+        object-fit: contain;
+      }
+    }
+  }
 
   @media (max-width: 768px) {
     font-size: 18px;
     text-align: center;
     padding: 0 10px;
     margin-top: 18px;
+
+    ul {
+      gap: 12px;
+
+      li img {
+        max-width: 50px;
+        height: 35px;
+      }
+    }
   }
 
   @media (max-width: 480px) {
@@ -67,29 +105,16 @@ export const DescricaoHero = styled.p`
     text-align: center;
     padding: 0 15px;
     margin-top: 16px;
+
+    ul {
+      gap: 8px;
+
+      li img {
+        max-width: 40px;
+        height: 30px;
+      }
+    }
   }
-`;
-
-export const Avatar = styled.img<{ $background?: boolean }>`
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  margin-top: 40px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  object-fit: cover;
-`;
-
-export const AvatarBackground = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  opacity: 0.1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 const bounce = keyframes`
@@ -111,11 +136,19 @@ export const ScrollArrow = styled.img`
   font-size: 32px;
   animation: ${bounce} 2s infinite;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
   opacity: 0.7;
   transition: opacity 0.3s;
 
   &:hover {
     opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 6px;
   }
 `;

@@ -2,6 +2,10 @@ import styled, { createGlobalStyle, keyframes } from "styled-components";
 import variaveis from "./variaveis";
 
 const EstiloGlobal = createGlobalStyle`
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     margin: 0;
     padding: 0;

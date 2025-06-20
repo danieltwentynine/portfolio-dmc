@@ -8,7 +8,23 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+
+  &.scrolled {
+    background-color:${variaveis.pretoOpaco};
+    backdrop-filter: blur(10px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px 0;
+    display: none;
+  }
+`;
 
 export const ListHeader = styled.ul`
   display: flex;
@@ -21,11 +37,16 @@ export const ListHeader = styled.ul`
   @media (max-width: 768px) {
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
   }
 `;
 
 export const ListItem = styled.li`
   margin: 0 60px;
+
+  #projects {
+    scroll-margin-top: 100px;
+  }
 
   a {
     text-decoration: none;
@@ -37,16 +58,19 @@ export const ListItem = styled.li`
   }
 
   @media (max-width: 768px) {
-    margin: 10px 20px;
+    margin: 10px 0;
   }
 `;
 
 export const Logo = styled(CircularText)`
-  margin-top: 20px;
+  padding: 20px;
+  margin: 20px;
 
   @media (max-width: 768px) {
-    margin-top: 10px;
+    padding: 10px;
+    margin: 10px 0;
     display: flex;
     justify-content: center;
+    align-self: center;
   }
 `;
