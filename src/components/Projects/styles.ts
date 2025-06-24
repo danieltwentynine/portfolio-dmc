@@ -13,9 +13,13 @@ export const Title = styled.h1`
 `;
 
 export const Description = styled.p`
-  font-size: 20;
+  font-size: 20px;
   color: ${variaveis.cinza};
   margin-bottom: 180px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
 `;
 
 export const CardContainer = styled.div`
@@ -37,18 +41,18 @@ export const CardContainer = styled.div`
 `;
 
 export const Card = styled.div`
-  background-color: #fff;
+  background-color: ${variaveis.preto};
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   max-width: 320px;
   display: flex;
   flex-direction: column;
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
   }
 `;
 
@@ -65,12 +69,12 @@ export const Content = styled.div`
 export const ProjectTitle = styled.h3`
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
-  color: ${variaveis.preto};
+  color: ${variaveis.branco};
 `;
 
 export const ProjectDescription = styled.p`
   font-size: 0.9rem;
-  color: ${variaveis.cinzaEscuro};
+  color: ${variaveis.cinza};
 `;
 
 export const TechList = styled.div`

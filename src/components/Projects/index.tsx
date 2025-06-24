@@ -1,11 +1,12 @@
 import imcImg from "../../img/imc.png";
 import githubImg from "../../img/github.png";
-import aniversarioImg from "../../img/aniversario.png"
-import calcImg from "../../img/calculadoraBasica.png"
+import aniversarioImg from "../../img/aniversario.png";
+import calcImg from "../../img/calculadoraBasica.png";
 import tarefasImg from "../../img/tarefas.png";
 import fightImg from "../../img/fightClub.png";
 import disneyImg from "../../img/disney.png";
 import yooyleImg from "../../img/yooyle.png";
+import listaDeContatoImg from "../../img/listaDeContatos.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import {
@@ -80,6 +81,13 @@ const projects = [
     description: "An alternative web search",
     tech: ["React", "Styled Components", "TypeScript"],
     link: "https://yooyle-search.vercel.app/",
+  },
+  {
+    image: listaDeContatoImg,
+    title: "Lista De Contatos",
+    description: "Uma página web para criar listas de contato",
+    tech: ["React", "Styled Components", "TypeScript"],
+    link: "https://lista-de-contatos-dmc.vercel.app/",
   },
 ];
 

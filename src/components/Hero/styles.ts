@@ -1,18 +1,17 @@
-import { keyframes, styled } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import variaveis from "../../styles/variaveis";
 
-
 export const TextContainer = styled.div`
-  margin-top: 150px;
+  margin-top: 80px;
 
   @media (max-width: 768px) {
-    margin-top: 100px;
+    margin-top: 60px;
   }
 
   @media (max-width: 480px) {
-    margin-top: 50px;
+    margin-top: 40px;
   }
-`;
+`
 
 export const GradientTitle = styled.h1`
   font-size: 140px;
@@ -60,28 +59,8 @@ export const DescricaoHero = styled.p`
     margin-bottom: 20px;
     font-size: 14px;
     color: ${variaveis.cinza};
-    padding: 24px;
-    display: block;
-  }
-
-  ul {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
     padding: 0;
-    flex-wrap: wrap;
-
-    li {
-      display: flex;
-      align-items: center;
-
-      img {
-        width: 100%;
-        max-width: 60px;
-        height: 40px;
-        object-fit: contain;
-      }
-    }
+    display: block;
   }
 
   @media (max-width: 768px) {
@@ -89,15 +68,6 @@ export const DescricaoHero = styled.p`
     text-align: center;
     padding: 0 10px;
     margin-top: 18px;
-
-    ul {
-      gap: 12px;
-
-      li img {
-        max-width: 50px;
-        height: 35px;
-      }
-    }
   }
 
   @media (max-width: 480px) {
@@ -105,13 +75,50 @@ export const DescricaoHero = styled.p`
     text-align: center;
     padding: 0 15px;
     margin-top: 16px;
+  }
+`;
 
-    ul {
-      gap: 8px;
+export const ListaTech = styled.ul`
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 0;
+  flex-wrap: wrap;
+  list-style: none;
 
-      li img {
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 8px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 100%;
+      max-width: 60px;
+      height: 40px;
+      object-fit: contain;
+      transition: all 0.5s ease;
+      transform: translateY(0);
+
+      @media (max-width: 768px) {
+        max-width: 50px;
+        height: 35px;
+      }
+
+      @media (max-width: 480px) {
         max-width: 40px;
         height: 30px;
+      }
+
+      &:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
       }
     }
   }
@@ -132,23 +139,26 @@ const bounce = keyframes`
 `;
 
 export const ScrollArrow = styled.img`
-  color: white;
-  font-size: 32px;
   animation: ${bounce} 2s infinite;
-  cursor: pointer;
-  margin-top: 10px;
   opacity: 0.7;
   transition: opacity 0.3s;
+  margin-top: 20px;
+  width: 40px;
+  height: 40px;
 
   &:hover {
     opacity: 1;
   }
 
   @media (max-width: 768px) {
-    margin-top: 8px;
+    width: 35px;
+    height: 35px;
+    margin-top: 15px;
   }
 
   @media (max-width: 480px) {
-    margin-top: 6px;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
   }
 `;
