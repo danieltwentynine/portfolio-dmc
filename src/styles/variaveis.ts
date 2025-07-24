@@ -1,8 +1,8 @@
 export default {
-  preto: "#222831",
-  pretoOpaco: "#rgba(34, 40, 49, 0.55)",
+  preto: "#161717ff",
+  pretoOpaco: "rgba(22, 23, 23, 0.55)",
   branco: "#eeeeee",
   highlightAzul: "#1e549f",
-  cinza: "#808080",
+  cinza: "#b5b5b5ff",
   cinzaEscuro: "#374151",
 };
