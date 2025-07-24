@@ -12,6 +12,21 @@ export const TextContainer = styled.div`
   overflow: hidden;
   padding: 0 20px;
 
+  .HeroIcon {
+    height: 180px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    filter: drop-shadow(2xp 2px 4px rgba(0, 0, 0, 0.5));
+
+    @media (max-width: 768px) {
+      height: 100px;
+    }
+
+    @media (max-width: 480px) {
+      height: 80px;
+    }
+  }
+
   @media (max-width: 768px) {
     margin-top: 60px;
     padding: 0 15px;

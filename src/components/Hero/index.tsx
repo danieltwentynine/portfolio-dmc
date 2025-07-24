@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DescricaoHero, GradientTitle, TextContainer, ListaTech } from "./styles";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Squares from "../Background/Squares";
-
-
-AOS.init();
+import danielIcon from "../../img/iconAnimeDaniel.png";
 
 function Hero() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <TextContainer>
+      <img className="HeroIcon" src={danielIcon} alt="Daniel M Cardoso icon" />
       <GradientTitle>Daniel M Cardoso</GradientTitle>
       <DescricaoHero>
         <span>
