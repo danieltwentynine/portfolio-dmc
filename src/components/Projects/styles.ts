@@ -114,6 +114,7 @@ export const Button = styled.a`
   font-weight: bold;
   display: inline-block;
   transition: background-color 0.3s;
+  cursor: none;
 
   &:hover {
     background-color: #0059c9;

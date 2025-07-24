@@ -12,11 +12,13 @@ const EstiloGlobal = createGlobalStyle`
     box-sizing: border-box;
     font-family: Inter, sans-serif;
     list-style: none;
-
+    text-decoration: none;
+    cursor: none;
   }
 
   body {
     background-color: ${variaveis.preto};
+    cursor: none;
   }
 `;
 

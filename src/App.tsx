@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import TargetCursor from "./components/Cursor/TargetCursor";
 import Squares from "./components/Background/Squares";
+import Footer from "./components/Footer";
 AOS.init();
 
 function App() {
@@ -14,9 +15,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <EstiloGlobal />
       <TargetCursor spinDuration={4} hideDefaultCursor={true} />
+      <Container>
       <div
               style={{
-                position: "absolute",
+                position: "fixed",
                 top: 0,
                 left: 0,
                 width: "100%",
@@ -33,10 +35,10 @@ function App() {
                 hoverFillColor="#222"
               />
             </div>
-      <Container>
         <Hero />
         <Projects />
       </Container>
+      <Footer/>
     </ThemeProvider>
   );
 }
