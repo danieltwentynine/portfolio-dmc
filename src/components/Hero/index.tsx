@@ -14,9 +14,6 @@ function Hero() {
       <DescricaoHero>
         <span>
           Full Stack Developer | Computer Engineering student at UNASP-SP
-          <br />
-          Currently developing The 1% App an AI-powered running app focused on
-          personalized training plans.
         </span>
       </DescricaoHero>
       <ListaTech>

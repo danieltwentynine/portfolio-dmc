@@ -10,21 +10,21 @@ export const TextContainer = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 0 20px; // Adicionado padding horizontal padrão
+  padding: 0 20px;
 
   @media (max-width: 768px) {
     margin-top: 60px;
-    padding: 0 15px; // Ajuste o padding para tablets
+    padding: 0 15px;
   }
 
   @media (max-width: 480px) {
     margin-top: 40px;
-    padding: 0 10px; // Ajuste o padding para celulares
+    padding: 0 10px;
   }
 `;
 
 export const GradientTitle = styled.h1`
-  font-size: 100px; /* Base font size */
+  font-size: 100px;
   font-weight: bold;
   background: linear-gradient(to right, #4567fd, #00ffe7);
   background-size: 200% 200%;
@@ -36,9 +36,9 @@ export const GradientTitle = styled.h1`
   transition: all 1s ease;
   width: fit-content;
   margin: 0 auto;
-  white-space: nowrap; /* Prevent line breaks within the title if it becomes too long */
-  overflow: hidden; /* Hide overflow if white-space: nowrap causes it to exceed container */
-  text-overflow: ellipsis; /* Add ellipsis if text is cut off */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @keyframes gradientMove {
     0% {
@@ -52,17 +52,16 @@ export const GradientTitle = styled.h1`
     }
   }
 
-  @media (max-width: 768px) {
-    font-size: 80px;
-  }
-
-  @media (max-width: 480px) {
+  @media (max-width: 1024px) {
     font-size: 60px;
   }
 
-  @media (max-width: 380px) {
-    /* Even smaller screens if needed */
-    font-size: 48px;
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
   }
 `;
 
@@ -99,25 +98,24 @@ export const DescricaoHero = styled.p`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
     text-align: center;
     padding: 0 10px;
     margin-top: 18px;
-    margin-bottom: 30px; /* Adjust bottom margin */
+    margin-bottom: 40px;
   }
 
   @media (max-width: 480px) {
-    font-size: 16px; /* Slightly increase for better readability on small phones */
+    font-size: 10px;
     text-align: center;
     padding: 0 15px;
     margin-top: 16px;
-    margin-bottom: 20px; /* Adjust bottom margin */
-  }
-
-  @media (max-width: 380px) {
-    font-size: 14px;
-    padding: 0 10px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -136,12 +134,14 @@ export const ListaTech = styled.ul`
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr 1fr 1fr);
     gap: 12px;
   }
 
   @media (max-width: 480px) {
     gap: 8px;
-    padding: 0 10px; /* Add some horizontal padding to avoid touching edges */
+    padding: 0 10px;
   }
 
   li {

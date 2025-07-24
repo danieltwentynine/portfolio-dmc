@@ -2,8 +2,20 @@ import styled from "styled-components";
 import variaveis from "../../styles/variaveis";
 
 export const Container = styled.div`
-  margin-top: 200px;
+  margin-top: 100px;
   text-align: center;
+
+  @media (max-width: 1024px) {
+    margin-top: 80px;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 20px;
+  }
 `;
 
 export const Title = styled.h1`

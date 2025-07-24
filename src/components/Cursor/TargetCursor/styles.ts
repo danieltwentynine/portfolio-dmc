@@ -1,59 +1,75 @@
-import styled from "styled-components";
+    import styled from "styled-components";
 
-export const TargetCursorWrapper = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transform: translate(-50%, -50%);
-
-    .target-cursor-dot {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 4px;
-        height: 4px;
-        background: #fff;
-        border-radius: 50%;
+    export const TargetCursorWrapper = styled.div`
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+        z-index: 9999;
+        mix-blend-mode: difference;
         transform: translate(-50%, -50%);
-        will-change: transform;
-    }
 
-    .target-cursor-corner {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 12px;
-        height: 12px;
-        border: 3px solid #fff;
-        will-change: transform;
-    }
+        @media (max-width: 1024px) {
+            display: none;
+        }
 
-    .corner-tl {
-        transform: translate(-150%, -150%);
-        border-right: none;
-        border-bottom: none;
-    }
+        @media (max-width: 768px) {
+            display: none;
+        }
 
-    .corner-tr {
-        transform: translate(50%, -150%);
-        border-left: none;
-        border-bottom: none;
-    }
+        @media (max-width: 480px) {
+            display: none;
+        }
 
-    .corner-br {
-        transform: translate(50%, 50%);
-        border-left: none;
-        border-top: none;
-    }
+        @media (max-width: 380px) {
+            display: none;
+        }
 
-    .corner-bl {
-        transform: translate(-150%, 50%);
-        border-right: none;
-        border-top: none;
-    }
-    `;
+        .target-cursor-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            will-change: transform;
+        }
+
+        .target-cursor-corner {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 12px;
+            height: 12px;
+            border: 3px solid #fff;
+            will-change: transform;
+        }
+
+        .corner-tl {
+            transform: translate(-150%, -150%);
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-tr {
+            transform: translate(50%, -150%);
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-br {
+            transform: translate(50%, 50%);
+            border-left: none;
+            border-top: none;
+        }
+
+        .corner-bl {
+            transform: translate(-150%, 50%);
+            border-right: none;
+            border-top: none;
+        }
+        `;
