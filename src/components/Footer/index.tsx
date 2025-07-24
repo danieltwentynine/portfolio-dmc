@@ -7,20 +7,20 @@
         e.preventDefault();
 
         emailjs
-            .sendForm(
-                "service_70t3s5v",
-                "template_heo24d9",
-                e.currentTarget,
-                "Az4hkMKg715Nf9iy6"
-            )
-            .then(
-                (result) => {
-                alert("Message sent!");
-                },
-                (error) => {
-                alert("Failed to send. Try again later.");
-                }
-            );
+          .sendForm(
+            "service_qfhm91g",
+            "template_sfxkc73",
+            e.currentTarget,
+            "Az4hkMKg715Nf9iy6"
+          )
+          .then(
+            (result) => {
+              alert("Message sent!");
+            },
+            (error) => {
+              alert("Failed to send. Try again later.");
+            }
+          );
 
         e.currentTarget.reset();
     }
