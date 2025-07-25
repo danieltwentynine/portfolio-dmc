@@ -7,6 +7,11 @@ export const FooterContainer = styled.footer`
     padding: 40px 20px;
     color: ${variaveis.highlightAzul};
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+    gap: 40px;
 
     p {
         padding-bottom: 20px;
@@ -18,7 +23,7 @@ export const FooterList = styled.ul`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
     padding: 0 20px;
 
     @media (max-width: 768px) {
@@ -49,6 +54,12 @@ export const ContactForm = styled.form`
     background-color: #1a1a1a;
     color: ${variaveis.cinza};
     cursor: none;
+
+    &:focus {
+      outline: none;
+      border-color: ${variaveis.highlightAzul};
+      background-color: #222;
+    }
   }
 
   input::placeholder,
@@ -70,6 +81,12 @@ export const ContactForm = styled.form`
 
     &:hover {
       background-color: ${variaveis.highlightAzul || "#1e90ff"};
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
 `;
@@ -87,12 +104,30 @@ export const PageLinks = styled.ul`
   }
 
   li {
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 40px;
     a {
       color: ${variaveis.cinza};
       text-decoration: none;
       cursor: none;
+      &:hover {
+        color: ${variaveis.highlightAzul};
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: ${variaveis.highlightAzul};
+        transition: width 0.3s ease;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
     }
 
     @media (max-width: 768px) {
@@ -102,7 +137,7 @@ export const PageLinks = styled.ul`
   }
 `;
 
-export const Links = styled.ul`
+export const SocialLinks = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,12 +150,17 @@ export const Links = styled.ul`
   }
 
   li {
-    margin-top: 40px;
+    margin-top: 20px;
     a {
       text-decoration: none;
       color: ${variaveis.cinza};
       opacity: 0.3;
       cursor: none;
+      &:hover {
+        opacity: 1;
+        color: ${variaveis.highlightAzul};
+        transform: translateY(-2px);
+      }
     }
 
     @media (max-width: 768px) {

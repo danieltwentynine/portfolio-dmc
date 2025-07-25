@@ -1,5 +1,5 @@
     import React, { useEffect } from "react";
-    import { ContactForm, FooterContainer, FooterList, Links, PageLinks } from "./styles";
+    import { ContactForm, FooterContainer, FooterList, SocialLinks, PageLinks } from "./styles";
 
     import emailjs from "emailjs-com";
 
@@ -7,20 +7,20 @@
         e.preventDefault();
 
         emailjs
-          .sendForm(
-            "service_qfhm91g",
-            "template_sfxkc73",
-            e.currentTarget,
-            "Az4hkMKg715Nf9iy6"
-          )
-          .then(
-            (result) => {
-              alert("Message sent!");
-            },
-            (error) => {
-              alert("Failed to send. Try again later.");
-            }
-          );
+            .sendForm(
+                "service_qfhm91g",
+                "template_sfxkc73",
+                e.currentTarget,
+                "Az4hkMKg715Nf9iy6"
+            )
+            .then(
+                (result) => {
+                alert("Message sent!");
+                },
+                (error) => {
+                alert("Failed to send. Try again later.");
+                }
+            );
 
         e.currentTarget.reset();
     }
@@ -30,11 +30,26 @@
             <FooterContainer>
                 <FooterList>
                 <li>
-                    <ContactForm>
-                        <input type="text" name="name" placeholder="Your Name: " required/>
-                        <input type="email" name="email" placeholder="Your E-mail:" required/>
-                        <textarea name="message" placeholder="Hello Daniel..." required></textarea>
-                        <button type="submit">Send</button>
+                    <ContactForm onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name: "
+                        required
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your E-mail:"
+                        required
+                    />
+                    <textarea
+                        name="message"
+                        rows={5}
+                        placeholder="Hello Daniel..."
+                        required
+                    ></textarea>
+                    <button type="submit">Send</button>
                     </ContactForm>
                 </li>
                 <li>
@@ -49,7 +64,7 @@
                         <a href="#about">About</a>
                     </li>
                     </PageLinks>
-                    <Links>
+                    <SocialLinks>
                     <li>
                         <a
                         href="https://www.linkedin.com/in/--dmc-dev/"
@@ -71,7 +86,7 @@
                         Github
                         </a>
                     </li>
-                    </Links>
+                    </SocialLinks>
                 </li>
                 </FooterList>
                 <p>© 2025 Daniel M Cardoso</p>

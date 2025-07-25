@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import TargetCursor from "./components/Cursor/TargetCursor";
 import Squares from "./components/Background/Squares";
 import Footer from "./components/Footer";
+import About from "./components/About";
 AOS.init();
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Hero />
         <Projects />
       </Container>
+      <About/>
       <Footer/>
     </ThemeProvider>
   );
