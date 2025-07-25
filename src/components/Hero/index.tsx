@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { DescricaoHero, GradientTitle, TextContainer, ListaTech } from "./styles";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import danielIcon from "../../img/iconAnimeDaniel.png";
+import danielIcon from "../../img/danielAnime.png";
 
 function Hero() {
   useEffect(() => {
