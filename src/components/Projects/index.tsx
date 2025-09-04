@@ -109,23 +109,20 @@ function Projects() {
           <CardItem data-aos="zoom-in-up" data-aos-duration="1000">
             <ul>
               <li>
-                <h3>Contact List</h3>
+                <h3>E-Food</h3>
               </li>
               <li>
-                <p>A web app to create contact lists.</p>
+                <p>E-Food a website to order food</p>
               </li>
               <li>
-                <span>HTML5 - StyledComponents - React - TS - Redux</span>
+                <span>HTML5 - StyledComponents - React - TS - AJAX</span>
               </li>
               <li>
-                <a
-                  href="https://lista-de-contatos-dmc.vercel.app/"
-                  target="_blank"
-                >
+                <a href="https://dmc-food.vercel.app" target="_blank">
                   Visit
                 </a>
                 <a
-                  href="https://github.com/danieltwentynine/lista-de-contatos-dmc"
+                  href="https://github.com/danieltwentynine/dmc-food"
                   target="_blank"
                 >
                   Github
