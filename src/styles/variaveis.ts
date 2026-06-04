@@ -1,8 +1,8 @@
 export default {
-  preto: "#161717ff",
-  pretoOpaco: "rgba(22, 23, 23, 0.55)",
-  branco: "#eeeeee",
-  highlightAzul: "#1e549f",
-  cinza: "#b5b5b5ff",
-  cinzaEscuro: "#374151",
+  preto: "var(--color-bg)",
+  pretoOpaco: "var(--color-bg-opaque)",
+  branco: "var(--color-text)",
+  highlightAzul: "var(--color-highlight)",
+  cinza: "var(--color-gray)",
+  cinzaEscuro: "var(--color-gray-dark)",
 };

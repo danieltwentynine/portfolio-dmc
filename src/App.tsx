@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import Hero from "./components/Hero";
 import Projects from "./components/Projects";
+import Skills from "./components/Skills";
 import EstiloGlobal, { Container } from "./styles/index";
 import { theme } from "./theme/theme";
 import AOS from "aos";
@@ -13,15 +14,25 @@ import TargetCursor from "./components/Cursor/TargetCursor";
 import Squares from "./components/Background/Squares";
 import Footer from "./components/Footer";
 import About from "./components/About";
+import NavButtons from "./components/NavButtons";
+import { LanguageProvider } from "./context/LanguageContext";
+import { ThemeToggleProvider, useThemeMode } from "./context/ThemeToggleContext";
 
-function App() {
+function AppInner() {
+  const { mode } = useThemeMode();
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
+  const squareBorderColor = mode === "dark" ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.15)";
+  const squareHoverFill = mode === "dark" ? "#222" : "#ddd";
+  const squaresOpacity = mode === "dark" ? 0.1 : 0.06;
+
   return (
     <ThemeProvider theme={theme}>
       <EstiloGlobal />
+      <NavButtons />
       <TargetCursor spinDuration={4} hideDefaultCursor={true} />
       <Container>
         <div
@@ -32,23 +43,34 @@ function App() {
             width: "100%",
             height: "100vh",
             zIndex: -1,
-            opacity: 0.1,
+            opacity: squaresOpacity,
           }}
         >
           <Squares
             speed={0.5}
             squareSize={40}
             direction="diagonal"
-            borderColor="#fff"
-            hoverFillColor="#222"
+            borderColor={squareBorderColor}
+            hoverFillColor={squareHoverFill}
           />
         </div>
         <Hero />
         <Projects />
       </Container>
+      <Skills />
       <About />
       <Footer />
     </ThemeProvider>
+  );
+}
+
+function App() {
+  return (
+    <ThemeToggleProvider>
+      <LanguageProvider>
+        <AppInner />
+      </LanguageProvider>
+    </ThemeToggleProvider>
   );
 }
 

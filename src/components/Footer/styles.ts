@@ -2,15 +2,16 @@ import styled from "styled-components";
 import variaveis from "../../styles/variaveis";
 
 export const FooterContainer = styled.footer`
-  background: black;
+  background: var(--color-footer-bg);
   padding: 60px 20px 40px;
   color: ${variaveis.highlightAzul};
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
   gap: 40px;
+  transition: background 0.3s ease;
 
   p {
     padding-bottom: 20px;
@@ -57,19 +58,19 @@ export const ContactForm = styled.form`
   input,
   textarea {
     padding: 12px 14px;
-    border: 1px solid rgba(65, 67, 69, 0.6);
+    border: 1px solid var(--color-input-border);
     border-radius: 8px;
     resize: none;
     font-size: 0.95rem;
     font-family: inherit;
-    background-color: #111;
+    background-color: var(--color-input-bg);
     color: ${variaveis.branco};
     transition: border-color 0.2s ease, background-color 0.2s ease;
 
     &:focus {
       outline: none;
       border-color: ${variaveis.highlightAzul};
-      background-color: #1a1a1a;
+      background-color: var(--color-input-focus-bg);
     }
   }
 
@@ -87,8 +88,7 @@ export const ContactForm = styled.form`
     font-size: 0.95rem;
     border: none;
     border-radius: 8px;
-    transition: background-color 0.2s ease, transform 0.15s ease,
-      box-shadow 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
     margin-top: 4px;
 
     &:hover:not(:disabled) {

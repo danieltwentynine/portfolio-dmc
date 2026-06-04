@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import variaveis from "../../styles/variaveis";
 
 export const TextContainer = styled.div`
@@ -16,7 +16,7 @@ export const TextContainer = styled.div`
     height: 180px;
     border-radius: 50%;
     margin-bottom: 20px;
-    filter: drop-shadow(2xp 2px 4px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
 
     @media (max-width: 768px) {
       height: 100px;
@@ -56,15 +56,9 @@ export const GradientTitle = styled.h1`
   text-overflow: ellipsis;
 
   @keyframes gradientMove {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   @media (max-width: 1024px) {
@@ -86,31 +80,26 @@ export const DescricaoHero = styled.p`
   text-align: center;
   margin-top: 80px;
   margin-bottom: 80px;
-  max-width: 900px; /* Add a max-width to prevent it from becoming too wide on large screens */
-  line-height: 1.5; /* Improve readability */
+  max-width: 900px;
+  line-height: 1.5;
 
   span {
     font-size: 14px;
     color: ${variaveis.cinza};
     padding: 0;
     display: block;
-    background: linear-gradient(90deg, #333 0%, #fff 50%, #333 100%);
+    background: linear-gradient(90deg, #555 0%, #eee 50%, #555 100%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
     animation: shine 3s infinite linear;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   @keyframes shine {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
 
   @media (max-width: 1024px) {
@@ -143,10 +132,10 @@ export const ListaTech = styled.ul`
   list-style: none;
   max-width: 800px;
   margin: 0 auto;
-  border: 1px solid rgba(65, 67, 69);
+  border: 1px solid var(--color-surface-border);
   border-radius: 50px;
-  background-color: rgba(65, 67, 69, 0.65);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  background-color: var(--color-surface);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 
   @media (max-width: 768px) {
     display: grid;
@@ -157,7 +146,7 @@ export const ListaTech = styled.ul`
 
   @media (max-width: 480px) {
     gap: 8px;
-    padding: 0 10px;
+    padding: 10px;
   }
 
   li {
@@ -183,13 +172,12 @@ export const ListaTech = styled.ul`
       }
 
       @media (max-width: 380px) {
-        max-width: 35px; /* Even smaller for very small devices */
+        max-width: 35px;
         height: 25px;
       }
 
       &:hover {
         transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
       }
     }
   }

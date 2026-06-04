@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   ContactForm,
   FooterContainer,
@@ -12,28 +12,34 @@ import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useLanguage } from "../../context/LanguageContext";
+import { Language, Translations } from "../../i18n/translations";
 
-const schema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Enter a valid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
+type FormFields = { name: string; email: string; message: string };
 
-type FormData = z.infer<typeof schema>;
-
-function Footer() {
+function ContactFormBlock({
+  t,
+  lang,
+}: {
+  t: Translations;
+  lang: Language;
+}) {
   const [submitted, setSubmitted] = useState(false);
+
+  const schema = z.object({
+    name: z.string().min(2, t.footer.nameError),
+    email: z.string().email(t.footer.emailError),
+    message: z.string().min(10, t.footer.messageError),
+  });
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-  });
+  } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: FormFields) => {
     try {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
@@ -45,80 +51,106 @@ function Footer() {
       reset();
       setTimeout(() => setSubmitted(false), 5000);
     } catch {
-      alert("Failed to send. Try again later.");
+      alert(t.footer.error);
     }
   };
+
+  return (
+    <ContactForm key={lang} onSubmit={handleSubmit(onSubmit)} noValidate>
+      <div>
+        <input
+          type="text"
+          placeholder={t.footer.namePlaceholder}
+          aria-label={t.footer.namePlaceholder}
+          {...register("name")}
+        />
+        {errors.name && <ErrorMsg>{errors.name.message}</ErrorMsg>}
+      </div>
+      <div>
+        <input
+          type="email"
+          placeholder={t.footer.emailPlaceholder}
+          aria-label={t.footer.emailPlaceholder}
+          {...register("email")}
+        />
+        {errors.email && <ErrorMsg>{errors.email.message}</ErrorMsg>}
+      </div>
+      <div>
+        <textarea
+          rows={5}
+          placeholder={t.footer.messagePlaceholder}
+          aria-label={t.footer.messagePlaceholder}
+          {...register("message")}
+        />
+        {errors.message && <ErrorMsg>{errors.message.message}</ErrorMsg>}
+      </div>
+      {submitted && <SuccessMsg>{t.footer.success}</SuccessMsg>}
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? t.footer.sending : t.footer.send}
+      </button>
+    </ContactForm>
+  );
+}
+
+function Footer() {
+  const { t, lang } = useLanguage();
 
   return (
     <FooterContainer>
       <FooterList>
         <li>
-          <ContactForm onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div>
-              <input
-                type="text"
-                placeholder="Your Name"
-                aria-label="Your Name"
-                {...register("name")}
-              />
-              {errors.name && <ErrorMsg>{errors.name.message}</ErrorMsg>}
-            </div>
-            <div>
-              <input
-                type="email"
-                placeholder="Your E-mail"
-                aria-label="Your Email"
-                {...register("email")}
-              />
-              {errors.email && <ErrorMsg>{errors.email.message}</ErrorMsg>}
-            </div>
-            <div>
-              <textarea
-                rows={5}
-                placeholder="Hello Daniel..."
-                aria-label="Your Message"
-                {...register("message")}
-              />
-              {errors.message && <ErrorMsg>{errors.message.message}</ErrorMsg>}
-            </div>
-            {submitted && <SuccessMsg>Message sent successfully!</SuccessMsg>}
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Sending..." : "Send"}
-            </button>
-          </ContactForm>
+          <ContactFormBlock key={lang} t={t} lang={lang} />
         </li>
         <li>
           <PageLinks>
             <li>
-              <a href="#">Home</a>
+              <a href="#">{t.nav.home}</a>
             </li>
             <li>
-              <a href="#projects">Projects</a>
+              <a href="#projects">{t.nav.projects}</a>
             </li>
             <li>
-              <a href="#about">About</a>
+              <a href="#skills">{t.nav.skills}</a>
+            </li>
+            <li>
+              <a href="#about">{t.nav.about}</a>
             </li>
           </PageLinks>
           <SocialLinks>
             <li>
-              <a href="https://www.linkedin.com/in/--dmc-dev/" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.linkedin.com/in/dn13lmc/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 LinkedIn
               </a>
             </li>
             <li>
-              <a href="https://x.com/0nepercentdan" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://x.com/0nepercentdan"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 X
               </a>
             </li>
             <li>
-              <a href="https://github.com/danieltwentynine" target="_blank" rel="noopener noreferrer">
-                Github
+              <a
+                href="https://github.com/danieltwentynine"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
               </a>
+            </li>
+            <li>
+              <a href="mailto:danielmcardoso2016@protonmail.com">Email</a>
             </li>
           </SocialLinks>
         </li>
       </FooterList>
-      <p>© 2025 Daniel M Cardoso</p>
+      <p>{t.footer.copyright}</p>
     </FooterContainer>
   );
 }

@@ -1,35 +1,59 @@
-import { AboutContainer, AboutList, CenteredWrapper, TitleAbout } from "./styles";
+import { useLanguage } from "../../context/LanguageContext";
+import {
+  AboutContainer,
+  AboutList,
+  CenteredWrapper,
+  TitleAbout,
+  SummaryBlock,
+  ExperienceItem,
+  CompanyMeta,
+  BulletList,
+} from "./styles";
 
 function About() {
+  const { t } = useLanguage();
+
   return (
     <>
       <TitleAbout data-aos="fade-up" data-aos-duration="1000">
-        About Me
+        {t.about.title}
       </TitleAbout>
       <CenteredWrapper>
         <AboutContainer id="about">
+          <SummaryBlock data-aos="fade-up" data-aos-duration="1000">
+            {t.about.summary}
+          </SummaryBlock>
+
           <AboutList>
             <li data-aos="fade-up" data-aos-duration="1000">
-              <h2>Education</h2>
+              <h2>{t.about.education}</h2>
               <p>
-                • Majoring in Computer Engineering at UNASP-HT, Brazil
-                <br />• 2021 – 2026
+                {t.about.educationLine1}
+                <br />
+                {t.about.educationLine2}
               </p>
             </li>
+
             <li data-aos="fade-up" data-aos-duration="1000">
-              <h2>Experience</h2>
-              <p>
-                <h3>Information Technology Analyst</h3>
-                <br />• Besten Consultoria — Part-time
-                <br />• Jan 2025 to Present
-                <br />• São Paulo, São Paulo, Brazil — Hybrid
-              </p>
-              <p>
-                <h3>HelpDesk Specialist</h3>
-                <br />• IATec Instituto de Tecnologia Adventista — Full-time
-                <br />• Feb 2023 to Feb 2024
-                <br />• Hortolândia, São Paulo, Brazil — On-site
-              </p>
+              <h2>{t.about.experience}</h2>
+              {t.about.jobs.map((job, i) => (
+                <ExperienceItem
+                  key={i}
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                  data-aos-delay={i * 80}
+                >
+                  <h3>{job.role}</h3>
+                  <CompanyMeta>
+                    {job.company} &middot; {job.period} &middot; {job.location}
+                  </CompanyMeta>
+                  <BulletList>
+                    {job.bullets.map((bullet, j) => (
+                      <li key={j}>{bullet}</li>
+                    ))}
+                  </BulletList>
+                </ExperienceItem>
+              ))}
             </li>
           </AboutList>
         </AboutContainer>

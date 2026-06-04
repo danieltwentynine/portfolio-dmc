@@ -60,23 +60,22 @@ export const CardGrid = styled.div`
 `;
 
 export const CardItem = styled.div`
-  border: 1px solid rgba(65, 67, 69, 0.7);
+  border: 1px solid var(--color-card-border);
   border-radius: 16px;
-  background-color: rgba(65, 67, 69, 0.25);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  background-color: var(--color-card-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   padding: 24px;
   text-align: left;
   line-height: 1.6;
-  transition: transform 0.25s ease, box-shadow 0.25s ease,
-    background-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
   display: flex;
   flex-direction: column;
   gap: 12px;
 
   &:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-    background-color: rgba(65, 67, 69, 0.45);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    background-color: var(--color-card-hover-bg);
   }
 
   h3 {
@@ -102,8 +101,8 @@ export const CardItem = styled.div`
       font-size: 11px;
       font-weight: 500;
       color: ${variaveis.highlightAzul};
-      background: rgba(30, 84, 159, 0.15);
-      border: 1px solid rgba(30, 84, 159, 0.3);
+      background: var(--color-tech-badge-bg);
+      border: 1px solid var(--color-tech-badge-border);
       border-radius: 20px;
       padding: 3px 10px;
     }
@@ -113,6 +112,7 @@ export const CardItem = styled.div`
     display: flex;
     gap: 16px;
     margin-top: 4px;
+    align-items: center;
 
     a {
       text-decoration: none;
@@ -126,6 +126,16 @@ export const CardItem = styled.div`
         color: #4a90e2;
         transform: translateY(-1px);
       }
+    }
+
+    .corporate-badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: ${variaveis.cinza};
+      border: 1px solid var(--color-card-border);
+      border-radius: 20px;
+      padding: 3px 10px;
+      opacity: 0.7;
     }
   }
 `;
