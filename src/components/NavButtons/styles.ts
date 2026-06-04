@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import variaveis from "../../styles/variaveis";
 
 export const ButtonsWrapper = styled.div`
   position: fixed;
@@ -20,22 +19,22 @@ export const ToggleBtn = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 7px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--color-card-border);
-  background: var(--color-card-bg);
-  color: ${variaveis.branco};
-  font-size: 12px;
-  font-weight: 600;
-  font-family: inherit;
-  letter-spacing: 0.5px;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease,
-    color 0.2s ease;
+  padding: 6px 12px;
+  border-radius: 0;
+  border: 1px solid rgba(196, 158, 82, 0.3);
+  background: rgba(196, 158, 82, 0.05);
+  color: var(--color-text);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
   backdrop-filter: blur(8px);
 
   &:hover {
-    background: var(--color-card-hover-bg);
-    border-color: ${variaveis.highlightAzul};
+    background: rgba(196, 158, 82, 0.1);
+    border-color: var(--color-highlight);
+    color: var(--color-highlight);
     transform: translateY(-1px);
   }
 

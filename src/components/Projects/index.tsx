@@ -49,6 +49,10 @@ function Projects() {
               data-aos-duration="1000"
               className="cursor-target"
             >
+              <span className="corner tl" />
+              <span className="corner tr" />
+              <span className="corner bl" />
+              <span className="corner br" />
               <h3>{info.title}</h3>
               <p>{info.description}</p>
               <ul className="tech-list">

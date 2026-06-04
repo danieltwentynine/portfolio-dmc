@@ -43,6 +43,10 @@ function About() {
                   data-aos-duration="1000"
                   data-aos-delay={i * 80}
                 >
+                  <span className="corner tl" />
+                  <span className="corner tr" />
+                  <span className="corner bl" />
+                  <span className="corner br" />
                   <h3>{job.role}</h3>
                   <CompanyMeta>
                     {job.company} &middot; {job.period} &middot; {job.location}

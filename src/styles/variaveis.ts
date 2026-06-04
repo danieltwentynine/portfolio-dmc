@@ -6,3 +6,6 @@ export default {
   cinza: "var(--color-gray)",
   cinzaEscuro: "var(--color-gray-dark)",
 };
+
+export const teal = "var(--teal)";
+export const amber = "var(--amber)";

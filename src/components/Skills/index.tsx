@@ -23,6 +23,10 @@ function Skills() {
             data-aos-duration="1000"
             className="cursor-target"
           >
+            <span className="corner tl" />
+            <span className="corner tr" />
+            <span className="corner bl" />
+            <span className="corner br" />
             <h3>{cat.name}</h3>
             <ul>
               {cat.items.map((skill) => (

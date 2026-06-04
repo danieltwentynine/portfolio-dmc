@@ -2,21 +2,30 @@ import styled from "styled-components";
 import variaveis from "../../styles/variaveis";
 
 export const TitleAbout = styled.h1`
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
   text-align: center;
-  font-size: 40px;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   margin-top: 100px;
   margin-bottom: 20px;
   color: ${variaveis.branco};
   padding: 0 20px;
 
+  &::before {
+    content: '// ';
+    color: var(--color-highlight);
+    opacity: 0.6;
+    font-size: 0.75em;
+  }
+
   @media (max-width: 768px) {
-    font-size: 32px;
+    font-size: 36px;
     margin-top: 70px;
   }
 
   @media (max-width: 480px) {
-    font-size: 26px;
+    font-size: 28px;
     margin-top: 50px;
   }
 `;
@@ -48,10 +57,11 @@ export const SummaryBlock = styled.p`
   font-size: 15px;
   line-height: 1.9;
   color: ${variaveis.cinza};
-  border-left: 3px solid ${variaveis.highlightAzul};
+  border-left: 3px solid var(--color-highlight);
   padding-left: 16px;
   margin-bottom: 48px;
   font-style: italic;
+  font-family: 'Rajdhani', sans-serif;
 
   @media (max-width: 600px) {
     font-size: 14px;
@@ -67,13 +77,21 @@ export const AboutList = styled.ul`
     margin-bottom: 48px;
 
     h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: 400;
       margin-bottom: 20px;
-      font-size: 22px;
-      color: ${variaveis.highlightAzul};
-      letter-spacing: 1px;
+      font-size: 26px;
+      letter-spacing: 3px;
+      color: var(--color-highlight);
+
+      &::before {
+        content: '// ';
+        opacity: 0.5;
+        font-size: 0.8em;
+      }
 
       @media (max-width: 600px) {
-        font-size: 18px;
+        font-size: 20px;
       }
     }
 
@@ -92,13 +110,40 @@ export const AboutList = styled.ul`
 
 export const ExperienceItem = styled.div`
   margin-bottom: 36px;
+  padding: 20px 24px 24px;
   padding-bottom: 32px;
-  border-bottom: 1px solid var(--color-card-border);
+  border: 1px solid var(--color-card-border);
+  background: var(--color-card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease;
 
-  &:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(196, 158, 82, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: rgba(196, 158, 82, 0.35);
+    background: var(--color-card-hover-bg);
+  }
+
+  .corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    z-index: 1;
+
+    &.tl { top: 0; left: 0; border-top: 1px solid var(--amber); border-left: 1px solid var(--amber); }
+    &.tr { top: 0; right: 0; border-top: 1px solid var(--amber); border-right: 1px solid var(--amber); }
+    &.bl { bottom: 0; left: 0; border-bottom: 1px solid var(--amber); border-left: 1px solid var(--amber); }
+    &.br { bottom: 0; right: 0; border-bottom: 1px solid var(--amber); border-right: 1px solid var(--amber); }
   }
 
   h3 {
@@ -106,6 +151,8 @@ export const ExperienceItem = styled.div`
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 4px;
+    position: relative;
+    z-index: 1;
 
     @media (max-width: 600px) {
       font-size: 15px;
@@ -114,11 +161,15 @@ export const ExperienceItem = styled.div`
 `;
 
 export const CompanyMeta = styled.p`
-  font-size: 13px;
-  color: ${variaveis.highlightAzul};
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-highlight);
   margin-bottom: 14px;
-  font-weight: 500;
   opacity: 0.85;
+  position: relative;
+  z-index: 1;
 `;
 
 export const BulletList = styled.ul`
@@ -127,6 +178,8 @@ export const BulletList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
+  z-index: 1;
 
   li {
     font-size: 14px;
@@ -137,10 +190,13 @@ export const BulletList = styled.ul`
     margin-bottom: 0;
 
     &::before {
-      content: "•";
+      content: "▸";
       position: absolute;
       left: 0;
-      color: ${variaveis.highlightAzul};
+      color: var(--color-highlight);
+      opacity: 0.7;
+      font-size: 10px;
+      top: 4px;
     }
 
     @media (max-width: 600px) {

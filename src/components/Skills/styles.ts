@@ -14,18 +14,27 @@ export const SkillsSection = styled.section`
 `;
 
 export const SectionTitle = styled.h1`
-  font-size: 40px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   margin-bottom: 16px;
   color: ${variaveis.branco};
 
+  &::before {
+    content: '// ';
+    color: var(--color-highlight);
+    opacity: 0.6;
+    font-size: 0.75em;
+  }
+
   @media (max-width: 768px) {
-    font-size: 32px;
+    font-size: 36px;
   }
 
   @media (max-width: 480px) {
-    font-size: 26px;
+    font-size: 28px;
   }
 `;
 
@@ -48,24 +57,53 @@ export const SkillsGrid = styled.div`
 
 export const CategoryCard = styled.div`
   border: 1px solid var(--color-card-border);
-  border-radius: 16px;
-  background-color: var(--color-card-bg);
+  border-radius: 0;
+  background: var(--color-card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 24px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(196, 158, 82, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
-    background-color: var(--color-card-hover-bg);
+    border-color: rgba(196, 158, 82, 0.38);
+    background: var(--color-card-hover-bg);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), 0 0 16px rgba(196, 158, 82, 0.05);
+  }
+
+  .corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    z-index: 1;
+
+    &.tl { top: 0; left: 0; border-top: 1px solid var(--amber); border-left: 1px solid var(--amber); }
+    &.tr { top: 0; right: 0; border-top: 1px solid var(--amber); border-right: 1px solid var(--amber); }
+    &.bl { bottom: 0; left: 0; border-bottom: 1px solid var(--amber); border-left: 1px solid var(--amber); }
+    &.br { bottom: 0; right: 0; border-bottom: 1px solid var(--amber); border-right: 1px solid var(--amber); }
   }
 
   h3 {
-    color: ${variaveis.highlightAzul};
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--color-highlight);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 16px;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
   }
 
   ul {
@@ -74,21 +112,26 @@ export const CategoryCard = styled.div`
     gap: 8px;
     list-style: none;
     padding: 0;
+    position: relative;
+    z-index: 1;
   }
 `;
 
 export const SkillPill = styled.li`
-  font-size: 12px;
-  font-weight: 500;
-  color: ${variaveis.cinza};
-  background: transparent;
-  border: 1px solid var(--color-card-border);
-  border-radius: 20px;
-  padding: 4px 12px;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--teal-dim);
+  color: var(--teal);
+  background: var(--teal-glow);
+  border-radius: 0;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 
   &:hover {
-    border-color: ${variaveis.highlightAzul};
-    color: ${variaveis.highlightAzul};
+    border-color: var(--teal);
+    color: var(--color-text);
+    background: rgba(106, 157, 181, 0.12);
   }
 `;

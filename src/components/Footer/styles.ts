@@ -9,14 +9,19 @@ export const FooterContainer = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.6);
   gap: 40px;
   transition: background 0.3s ease;
+  border-top: 1px solid rgba(196, 158, 82, 0.15);
 
   p {
     padding-bottom: 20px;
     color: ${variaveis.cinza};
-    font-size: 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
   }
 `;
 
@@ -59,17 +64,18 @@ export const ContactForm = styled.form`
   textarea {
     padding: 12px 14px;
     border: 1px solid var(--color-input-border);
-    border-radius: 8px;
+    border-radius: 0;
     resize: none;
-    font-size: 0.95rem;
-    font-family: inherit;
+    font-size: 14px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 400;
     background-color: var(--color-input-bg);
     color: ${variaveis.branco};
     transition: border-color 0.2s ease, background-color 0.2s ease;
 
     &:focus {
       outline: none;
-      border-color: ${variaveis.highlightAzul};
+      border-color: var(--color-highlight);
       background-color: var(--color-input-focus-bg);
     }
   }
@@ -77,24 +83,30 @@ export const ContactForm = styled.form`
   input::placeholder,
   textarea::placeholder {
     color: ${variaveis.cinza};
-    opacity: 0.6;
+    opacity: 0.5;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
   }
 
   button {
-    background-color: ${variaveis.highlightAzul};
-    color: #fff;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background-color: var(--color-highlight);
+    color: #0a0a0f;
     padding: 12px;
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-weight: 400;
     border: none;
-    border-radius: 8px;
+    border-radius: 0;
     transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
     margin-top: 4px;
 
     &:hover:not(:disabled) {
-      background-color: #2563b0;
+      background-color: var(--amber);
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(30, 84, 159, 0.4);
+      box-shadow: 0 4px 20px rgba(196, 158, 82, 0.3);
     }
 
     &:active:not(:disabled) {
@@ -102,20 +114,25 @@ export const ContactForm = styled.form`
     }
 
     &:disabled {
-      opacity: 0.6;
+      opacity: 0.5;
     }
   }
 `;
 
 export const ErrorMsg = styled.span`
-  font-size: 0.75rem;
-  color: #f87171;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #e87171;
   padding-left: 2px;
 `;
 
 export const SuccessMsg = styled.span`
-  font-size: 0.85rem;
-  color: #4ade80;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6aad6a;
   text-align: center;
   padding: 4px 0;
 `;
@@ -134,13 +151,30 @@ export const PageLinks = styled.ul`
 
   li {
     a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
       color: ${variaveis.cinza};
       text-decoration: none;
-      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
       transition: color 0.2s ease;
 
+      &::before {
+        content: '//';
+        opacity: 0.4;
+        color: var(--color-highlight);
+        transition: opacity 0.2s ease;
+      }
+
       &:hover {
-        color: ${variaveis.highlightAzul};
+        color: var(--color-highlight);
+
+        &::before {
+          opacity: 1;
+        }
       }
     }
   }
@@ -162,16 +196,19 @@ export const SocialLinks = styled.ul`
 
   li {
     a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       text-decoration: none;
       color: ${variaveis.cinza};
       opacity: 0.5;
-      font-size: 0.95rem;
       transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
       display: inline-block;
 
       &:hover {
         opacity: 1;
-        color: ${variaveis.highlightAzul};
+        color: var(--color-highlight);
         transform: translateY(-2px);
       }
     }

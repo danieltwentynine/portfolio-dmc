@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/danielAnime.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#161717" />
+    <meta name="theme-color" content="#0a0a0f" />
     <meta
       name="description"
       content="Daniel M Cardoso – Full Stack Developer & Automation Specialist. TypeScript, React, Node.js, n8n, OpenAI. Based in São Paulo, Brazil."
@@ -29,6 +29,13 @@
       content="Full Stack Developer specializing in React, TypeScript and Node.js."
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
     <link
       rel="stylesheet"
       type="text/css"
@@ -37,8 +44,35 @@
     <title>Daniel M Cardoso</title>
   </head>
   <body>
+    <canvas id="grain"></canvas>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
+    <script>
+      (function () {
+        var canvas = document.getElementById("grain");
+        var ctx = canvas.getContext("2d");
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        function renderGrain() {
+          var imageData = ctx.createImageData(canvas.width, canvas.height);
+          for (var i = 0; i < imageData.data.length; i += 4) {
+            var value = (Math.random() * 255) | 0;
+            imageData.data[i] = value;
+            imageData.data[i + 1] = value;
+            imageData.data[i + 2] = value;
+            imageData.data[i + 3] = 255;
+          }
+          ctx.putImageData(imageData, 0, 0);
+        }
+        resize();
+        window.addEventListener("resize", resize);
+        setInterval(renderGrain, 50);
+      })();
+    </script>
   </body>
 </html>

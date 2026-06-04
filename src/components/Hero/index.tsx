@@ -8,7 +8,7 @@ function Hero() {
   return (
     <TextContainer>
       <img className="HeroIcon" src={danielIcon} alt="Daniel M Cardoso" />
-      <GradientTitle>Daniel M Cardoso</GradientTitle>
+      <GradientTitle data-text="Daniel M Cardoso">Daniel M Cardoso</GradientTitle>
       <DescricaoHero>
         <span>{t.hero.subtitle}</span>
       </DescricaoHero>

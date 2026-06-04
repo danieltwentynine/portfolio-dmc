@@ -16,7 +16,7 @@ export const TextContainer = styled.div`
     height: 180px;
     border-radius: 50%;
     margin-bottom: 20px;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(2px 2px 8px rgba(196, 158, 82, 0.3));
 
     @media (max-width: 768px) {
       height: 100px;
@@ -39,21 +39,57 @@ export const TextContainer = styled.div`
 `;
 
 export const GradientTitle = styled.h1`
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 100px;
-  font-weight: bold;
-  background: linear-gradient(to right, #4567fd, #00ffe7);
+  font-weight: 400;
+  letter-spacing: 6px;
+  background: linear-gradient(to right, var(--teal), var(--amber));
   background-size: 200% 200%;
   animation: gradientMove 6s ease-in-out infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  transition: all 1s ease;
   width: fit-content;
   margin: 0 auto;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  position: relative;
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: var(--teal);
+    color: var(--teal);
+    opacity: 0.15;
+    clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+    transform: translateX(-2px);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: var(--amber);
+    color: var(--amber);
+    opacity: 0.12;
+    clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+    transform: translateX(2px);
+    pointer-events: none;
+  }
 
   @keyframes gradientMove {
     0% { background-position: 0% 50%; }
@@ -71,6 +107,7 @@ export const GradientTitle = styled.h1`
 
   @media (max-width: 480px) {
     font-size: 28px;
+    letter-spacing: 4px;
   }
 `;
 
@@ -84,22 +121,17 @@ export const DescricaoHero = styled.p`
   line-height: 1.5;
 
   span {
-    font-size: 14px;
-    color: ${variaveis.cinza};
-    padding: 0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    -webkit-text-fill-color: var(--amber);
     display: block;
-    background: linear-gradient(90deg, #555 0%, #eee 50%, #555 100%);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: shine 3s infinite linear;
-  }
-
-  @keyframes shine {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    opacity: 0.85;
+    padding: 0;
+    background: none;
+    animation: none;
   }
 
   @media (max-width: 1024px) {
@@ -112,6 +144,11 @@ export const DescricaoHero = styled.p`
     padding: 0 10px;
     margin-top: 18px;
     margin-bottom: 40px;
+
+    span {
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -120,6 +157,11 @@ export const DescricaoHero = styled.p`
     padding: 0 15px;
     margin-top: 16px;
     margin-bottom: 40px;
+
+    span {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+    }
   }
 `;
 
@@ -133,15 +175,15 @@ export const ListaTech = styled.ul`
   max-width: 800px;
   margin: 0 auto;
   border: 1px solid var(--color-surface-border);
-  border-radius: 50px;
+  border-radius: 0;
   background-color: var(--color-surface);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 0 40px rgba(106, 157, 181, 0.04);
 
   @media (max-width: 768px) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
-    border-radius: 20px;
+    border-radius: 0;
   }
 
   @media (max-width: 480px) {
@@ -160,6 +202,7 @@ export const ListaTech = styled.ul`
       object-fit: contain;
       transition: all 0.5s ease;
       transform: translateY(0);
+      opacity: 0.8;
 
       @media (max-width: 768px) {
         max-width: 50px;
@@ -178,6 +221,7 @@ export const ListaTech = styled.ul`
 
       &:hover {
         transform: translateY(-4px) scale(1.02);
+        opacity: 1;
       }
     }
   }

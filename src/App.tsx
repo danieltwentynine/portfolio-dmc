@@ -7,27 +7,18 @@ import EstiloGlobal, { Container } from "./styles/index";
 import { theme } from "./theme/theme";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
 import TargetCursor from "./components/Cursor/TargetCursor";
 import Squares from "./components/Background/Squares";
 import Footer from "./components/Footer";
 import About from "./components/About";
 import NavButtons from "./components/NavButtons";
 import { LanguageProvider } from "./context/LanguageContext";
-import { ThemeToggleProvider, useThemeMode } from "./context/ThemeToggleContext";
+import { ThemeToggleProvider } from "./context/ThemeToggleContext";
 
 function AppInner() {
-  const { mode } = useThemeMode();
-
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
-
-  const squareBorderColor = mode === "dark" ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.15)";
-  const squareHoverFill = mode === "dark" ? "#222" : "#ddd";
-  const squaresOpacity = mode === "dark" ? 0.1 : 0.06;
 
   return (
     <ThemeProvider theme={theme}>
@@ -43,15 +34,15 @@ function AppInner() {
             width: "100%",
             height: "100vh",
             zIndex: -1,
-            opacity: squaresOpacity,
+            opacity: 0.06,
           }}
         >
           <Squares
             speed={0.5}
             squareSize={40}
             direction="diagonal"
-            borderColor={squareBorderColor}
-            hoverFillColor={squareHoverFill}
+            borderColor="rgba(196, 158, 82, 0.3)"
+            hoverFillColor="rgba(196, 158, 82, 0.05)"
           />
         </div>
         <Hero />
