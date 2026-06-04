@@ -1,47 +1,31 @@
-import yooyleImg from "../../img/yooyle.png";
-import listaDeContatoImg from "../../img/listaDeContatos.png";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import {
-  Container,
-  Title,
-  Description,
-  CardContainer,
-  Cards,
-  CardItem,
-} from "./styles";
-// You need to import or define Image as well
-import { useEffect } from "react";
+import { Container, Title, Description, CardGrid, CardItem } from "./styles";
 
-// const projects = [
-//   {
-//     image: yooyleImg,
-//     title: "YooYle",
-//     description: "An alternative web search",
-//     tech: ["HTML5", "CSS3", "Javascript"],
-//     link: "https://yooyle-search.vercel.app/",
-//   },
-//   {
-//     image: listaDeContatoImg,
-//     title: "Lista De Contatos",
-//     description: "Uma página web para criar listas de contato",
-//     tech: ["React", "Styled Components", "TypeScript"],
-//     link: "https://lista-de-contatos-dmc.vercel.app/",
-//   },
-// ];
-
-export const initAOS = () => {
-  AOS.init({
-    duration: 1000,
-    once: true,
-  });
-};
+const projects = [
+  {
+    title: "Daniel's Portfolio",
+    description: "My portfolio — this one!",
+    tech: ["React", "TypeScript", "Styled Components", "GSAP", "AOS"],
+    live: "https://portfolio-dmc.vercel.app/",
+    github: "https://github.com/danieltwentynine/portfolio-dmc",
+  },
+  {
+    title: "YooYle Search",
+    description:
+      "Frontend-only project focusing on the fundamentals of HTML, CSS and JS.",
+    tech: ["HTML5", "CSS3", "SCSS", "JavaScript"],
+    live: "https://yooyle-search.vercel.app/",
+    github: "https://github.com/danieltwentynine/yooyle",
+  },
+  {
+    title: "E-Food",
+    description: "A website to order food online.",
+    tech: ["React", "TypeScript", "Styled Components", "AJAX"],
+    live: "https://dmc-food.vercel.app",
+    github: "https://github.com/danieltwentynine/dmc-food",
+  },
+];
 
 function Projects() {
-  useEffect(() => {
-    initAOS();
-  }, []);
-
   return (
     <Container>
       <Title data-aos="fade-up" data-aos-duration="1000">
@@ -51,104 +35,32 @@ function Projects() {
         Check out the web apps I've created!
       </Description>
 
-      <CardContainer id="projects">
-        <Cards>
-          <CardItem data-aos="zoom-in-up" data-aos-duration="1000">
-            <ul>
-              <li>
-                <h3>Daniel's Portfolio</h3>
-              </li>
-              <li>
-                <p>My portfolio - this one!</p>
-              </li>
-              <li>
-                <span>
-                  HTML5 - StyledComponents - React - TS - AOS - ReactBits
-                </span>
-              </li>
-              <li>
-                <a href="https://portfolio-dmc.vercel.app/" target="_blank">
-                  Visit
-                </a>
-                <a
-                  href="https://github.com/danieltwentynine/portfolio-dmc"
-                  target="_blank"
-                >
-                  Github
-                </a>
-              </li>
+      <CardGrid id="projects">
+        {projects.map(({ title, description, tech, live, github }) => (
+          <CardItem
+            key={title}
+            data-aos="zoom-in-up"
+            data-aos-duration="1000"
+            className="cursor-target"
+          >
+            <h3>{title}</h3>
+            <p>{description}</p>
+            <ul className="tech-list">
+              {tech.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
             </ul>
-          </CardItem>
-          <CardItem data-aos="zoom-in-up" data-aos-duration="1000">
-            <ul>
-              <li>
-                <h3>YooYle Search</h3>
-              </li>
-              <li>
-                <p>
-                  Frontend-only project focusing on the fundamentals of HTML,
-                  CSS and JS.
-                </p>
-              </li>
-              <li>
-                <span>HTML5 - CSS3 - SCSS - JS</span>
-              </li>
-              <li>
-                <a href="https://yooyle-search.vercel.app/" target="_blank">
-                  Visit
-                </a>
-                <a
-                  href="https://github.com/danieltwentynine/yooyle"
-                  target="_blank"
-                >
-                  Github
-                </a>
-              </li>
-            </ul>
-          </CardItem>
-          <CardItem data-aos="zoom-in-up" data-aos-duration="1000">
-            <ul>
-              <li>
-                <h3>E-Food</h3>
-              </li>
-              <li>
-                <p>E-Food a website to order food</p>
-              </li>
-              <li>
-                <span>HTML5 - StyledComponents - React - TS - AJAX</span>
-              </li>
-              <li>
-                <a href="https://dmc-food.vercel.app" target="_blank">
-                  Visit
-                </a>
-                <a
-                  href="https://github.com/danieltwentynine/dmc-food"
-                  target="_blank"
-                >
-                  Github
-                </a>
-              </li>
-            </ul>
-          </CardItem>
-        </Cards>
-        {/* {projects.map(({ image, title, description, tech, link }, index) => (
-          <Card key={index} data-aos="zoom-in-up" data-aos-duration="1000">
-            <Image src={image} alt={`${title} preview`} />
-            <Content>
-              <ProjectTitle>{title}</ProjectTitle>
-              <ProjectDescription>{description}</ProjectDescription>
-              <TechList>
-                {tech.map((item, i) => (
-                  <span key={i}>{item}</span>
-                ))}
-              </TechList>
-              <Button href={link} target="_blank" rel="noopener noreferrer">
+            <div className="links">
+              <a href={live} target="_blank" rel="noopener noreferrer">
                 Visit
-              </Button>
-            </Content>
-          </Card>
-        ))} */}
-      </CardContainer>
+              </a>
+              <a href={github} target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+            </div>
+          </CardItem>
+        ))}
+      </CardGrid>
     </Container>
   );
 }

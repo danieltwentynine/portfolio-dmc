@@ -2,147 +2,130 @@ import styled from "styled-components";
 import variaveis from "../../styles/variaveis";
 
 export const Container = styled.div`
-  margin-top: 100px;
+  margin-top: 120px;
   text-align: center;
-
-  @media (max-width: 1024px) {
-    margin-top: 80px;
-  }
+  padding: 0 20px;
 
   @media (max-width: 768px) {
-    margin-top: 40px;
+    margin-top: 60px;
+    padding: 0 16px;
   }
 
   @media (max-width: 480px) {
-    margin-top: 20px;
+    margin-top: 40px;
+    padding: 0 12px;
   }
 `;
 
 export const Title = styled.h1`
   font-size: 40px;
-  margin-bottom: 40px;
-  color: ${variaveis.branco}
+  margin-bottom: 16px;
+  color: ${variaveis.branco};
+  letter-spacing: 2px;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 26px;
+  }
 `;
 
 export const Description = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   color: ${variaveis.cinza};
-  margin-bottom: 180px;
+  margin-bottom: 60px;
 
   @media (max-width: 768px) {
-    margin-bottom: 60px;
+    font-size: 15px;
+    margin-bottom: 40px;
   }
 `;
 
-export const CardContainer = styled.div`
-  margin-top: 40px;
-  margin-bottom: 40px;
-  display: block;
-`;
+export const CardGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 80px;
 
-export const Cards = styled.div`
-  width: 100%;
-  gap: 40px;
-  display: flex;
-  flex-direction: column;
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 580px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 `;
 
 export const CardItem = styled.div`
-  border: 1px solid rgba(65, 67, 69);
-  border-radius: 20px;
-  background-color: rgba(65, 67, 69, 0.65);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-  padding: 18px;
-  margin-left: 18px;
-  margin-bottom: 40px;
+  border: 1px solid rgba(65, 67, 69, 0.7);
+  border-radius: 16px;
+  background-color: rgba(65, 67, 69, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  padding: 24px;
   text-align: left;
-  line-height: 2;
-  transition: transform 0.3s ease;
+  line-height: 1.6;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 
   &:hover {
-    transform: translateY(-8px);
-    transition: transform 0.3s ease;
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    background-color: rgba(65, 67, 69, 0.45);
   }
 
-  h3,
-  p {
+  h3 {
     color: ${variaveis.branco};
+    font-size: 18px;
+    font-weight: 600;
   }
-  span {
+
+  p {
     color: ${variaveis.cinza};
+    font-size: 14px;
+    flex: 1;
   }
-  a {
-    text-decoration: none;
-    color: ${variaveis.highlightAzul};
-    margin-right: 18px;
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+
+    li {
+      font-size: 11px;
+      font-weight: 500;
+      color: ${variaveis.highlightAzul};
+      background: rgba(30, 84, 159, 0.15);
+      border: 1px solid rgba(30, 84, 159, 0.3);
+      border-radius: 20px;
+      padding: 3px 10px;
+    }
+  }
+
+  .links {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+
+    a {
+      text-decoration: none;
+      color: ${variaveis.highlightAzul};
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+
+      &:hover {
+        color: #4a90e2;
+        transform: translateY(-1px);
+      }
+    }
   }
 `;
-
-// export const Card = styled.div`
-//   background-color: ${variaveis.preto};
-//   border-radius: 16px;
-//   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-//   overflow: hidden;
-//   transition: box-shadow 0.3s ease, transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-//   max-width: 320px;
-//   display: flex;
-//   flex-direction: column;
-
-//   &:hover {
-//     transform: translateY(-12px) scale(1.02);
-//     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-//   }
-// `;
-
-// export const Image = styled.img`
-//   width: 100%;
-//   height: 180px;
-//   object-fit: cover;
-// `;
-
-// export const Content = styled.div`
-//   padding: 1rem;
-// `;
-
-// export const ProjectTitle = styled.h3`
-//   margin: 0 0 0.5rem;
-//   font-size: 1.25rem;
-//   color: ${variaveis.branco};
-// `;
-
-// export const ProjectDescription = styled.p`
-//   font-size: 0.9rem;
-//   color: ${variaveis.cinza};
-// `;
-
-// export const TechList = styled.div`
-//   margin-top: 0.5rem;
-//   display: flex;
-//   flex-wrap: wrap;
-//   gap: 0.5rem;
-
-//   span {
-//     background: #f0f0f0;
-//     padding: 0.25rem 0.5rem;
-//     border-radius: 12px;
-//     font-size: 0.75rem;
-//   }
-// `;
-
-// export const Button = styled.a`
-//   margin-top: 1rem;
-//   background-color: #0070f3;
-//   color: #fff;
-//   padding: 0.6rem 1rem;
-//   text-align: center;
-//   text-decoration: none;
-//   border-radius: 8px;
-//   font-weight: bold;
-//   display: inline-block;
-//   transition: background-color 0.3s;
-//   cursor: none;
-
-//   &:hover {
-//     background-color: #0059c9;
-//   }
-// `;

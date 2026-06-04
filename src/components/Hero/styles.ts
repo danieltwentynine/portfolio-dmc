@@ -150,8 +150,9 @@ export const ListaTech = styled.ul`
 
   @media (max-width: 768px) {
     display: grid;
-    grid-template-columns: repeat(3, 1fr 1fr 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
+    border-radius: 20px;
   }
 
   @media (max-width: 480px) {
