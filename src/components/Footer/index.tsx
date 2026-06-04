@@ -8,7 +8,7 @@ import {
   ErrorMsg,
   SuccessMsg,
 } from "./styles";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
