@@ -15,13 +15,19 @@ import NavButtons from "./components/NavButtons";
 import IntroSequence from "./components/IntroSequence";
 import ParticleTrail from "./components/ParticleTrail";
 import AudioToggle from "./components/AudioToggle";
-import { LanguageProvider } from "./context/LanguageContext";
+import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { ThemeToggleProvider } from "./context/ThemeToggleContext";
 
 function AppInner() {
+  const { lang } = useLanguage();
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
+
+  useEffect(() => {
+    AOS.refreshHard();
+  }, [lang]);
 
   return (
     <ThemeProvider theme={theme}>

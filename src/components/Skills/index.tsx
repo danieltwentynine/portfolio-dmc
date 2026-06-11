@@ -14,9 +14,9 @@ function Skills() {
     <SkillsSection id="skills">
       <SessionTitle session={2}>{t.skills.title}</SessionTitle>
       <SkillsGrid>
-        {t.skills.categories.map((cat) => (
+        {t.skills.categories.map((cat, i) => (
           <CategoryCard
-            key={cat.name}
+            key={i}
             data-aos="zoom-in-up"
             data-aos-duration="1000"
             className="cursor-target"

@@ -7,7 +7,7 @@ import {
 } from "../IntroSequence/introState";
 import { ToggleButton } from "./styles";
 
-const AUDIO_SRC = "/audio/lofi-jazz.mp3";
+const AUDIO_SRC = "/audio/jazz.mp3";
 
 function AudioToggle() {
   const [playing, setPlaying] = useState(false);

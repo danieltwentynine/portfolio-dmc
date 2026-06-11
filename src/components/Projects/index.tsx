@@ -43,7 +43,7 @@ function Projects() {
           const meta = projectsMeta[i];
           return (
             <CardItem
-              key={info.title}
+              key={i}
               data-aos="zoom-in-up"
               data-aos-duration="1000"
               className="cursor-target"
