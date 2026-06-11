@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import variaveis from "../../styles/variaveis";
 
 export const SkillsSection = styled.section`
   padding: 0 24px 80px;
@@ -10,31 +9,6 @@ export const SkillsSection = styled.section`
 
   @media (max-width: 480px) {
     padding: 0 12px 50px;
-  }
-`;
-
-export const SectionTitle = styled.h1`
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 48px;
-  font-weight: 400;
-  text-align: center;
-  letter-spacing: 4px;
-  margin-bottom: 16px;
-  color: ${variaveis.branco};
-
-  &::before {
-    content: '// ';
-    color: var(--color-highlight);
-    opacity: 0.6;
-    font-size: 0.75em;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 36px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 28px;
   }
 `;
 

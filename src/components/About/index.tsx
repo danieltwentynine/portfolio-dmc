@@ -1,4 +1,5 @@
 import { useLanguage } from "../../context/LanguageContext";
+import SessionTitle from "../SessionTitle";
 import {
   AboutContainer,
   AboutList,
@@ -15,8 +16,8 @@ function About() {
 
   return (
     <>
-      <TitleAbout data-aos="fade-up" data-aos-duration="1000">
-        {t.about.title}
+      <TitleAbout>
+        <SessionTitle session={3}>{t.about.title}</SessionTitle>
       </TitleAbout>
       <CenteredWrapper>
         <AboutContainer id="about">

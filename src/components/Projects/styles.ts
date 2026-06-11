@@ -17,30 +17,6 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled.h1`
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 48px;
-  font-weight: 400;
-  margin-bottom: 16px;
-  color: ${variaveis.branco};
-  letter-spacing: 4px;
-
-  &::before {
-    content: '// ';
-    color: var(--color-highlight);
-    opacity: 0.6;
-    font-size: 0.75em;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 36px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 28px;
-  }
-`;
-
 export const Description = styled.p`
   font-size: 15px;
   color: ${variaveis.cinza};
@@ -167,7 +143,8 @@ export const CardItem = styled.div`
       text-transform: uppercase;
       text-decoration: none;
       color: var(--color-highlight);
-      transition: color 0.2s ease, transform 0.2s ease;
+      padding: 2px 6px;
+      transition: color 0.2s ease, transform 0.2s ease, box-shadow 200ms ease;
       display: inline-block;
 
       &::before {
@@ -178,6 +155,7 @@ export const CardItem = styled.div`
       &:hover {
         color: var(--amber);
         transform: translateY(-1px);
+        box-shadow: 0 0 12px var(--bebop-orange-glow);
       }
     }
 

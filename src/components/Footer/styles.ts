@@ -106,7 +106,7 @@ export const ContactForm = styled.form`
     &:hover:not(:disabled) {
       background-color: var(--amber);
       transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(196, 158, 82, 0.3);
+      box-shadow: 0 4px 20px rgba(196, 158, 82, 0.3), 0 0 12px var(--bebop-orange-glow);
     }
 
     &:active:not(:disabled) {
@@ -160,7 +160,8 @@ export const PageLinks = styled.ul`
       display: flex;
       align-items: center;
       gap: 4px;
-      transition: color 0.2s ease;
+      padding: 2px 6px;
+      transition: color 0.2s ease, box-shadow 200ms ease;
 
       &::before {
         content: '//';
@@ -171,6 +172,7 @@ export const PageLinks = styled.ul`
 
       &:hover {
         color: var(--color-highlight);
+        box-shadow: 0 0 12px var(--bebop-orange-glow);
 
         &::before {
           opacity: 1;
@@ -203,13 +205,15 @@ export const SocialLinks = styled.ul`
       text-decoration: none;
       color: ${variaveis.cinza};
       opacity: 0.5;
-      transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      padding: 2px 6px;
+      transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 200ms ease;
       display: inline-block;
 
       &:hover {
         opacity: 1;
         color: var(--color-highlight);
         transform: translateY(-2px);
+        box-shadow: 0 0 12px var(--bebop-orange-glow);
       }
     }
   }

@@ -1,14 +1,24 @@
 import { DescricaoHero, GradientTitle, TextContainer, ListaTech } from "./styles";
 import { useLanguage } from "../../context/LanguageContext";
+import { useGlitch } from "../../hooks/useGlitch";
+import StarField from "../StarField";
 import danielIcon from "../../img/danielAnime.png";
 
 function Hero() {
   const { t } = useLanguage();
+  const { glitching, trigger } = useGlitch(400);
 
   return (
     <TextContainer>
+      <StarField />
       <img className="HeroIcon" src={danielIcon} alt="Daniel M Cardoso" />
-      <GradientTitle data-text="Daniel M Cardoso">Daniel M Cardoso</GradientTitle>
+      <GradientTitle
+        data-text="Daniel M Cardoso"
+        className={glitching ? "glitching" : undefined}
+        onMouseEnter={trigger}
+      >
+        Daniel M Cardoso
+      </GradientTitle>
       <DescricaoHero>
         <span>{t.hero.subtitle}</span>
       </DescricaoHero>

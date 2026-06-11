@@ -1,31 +1,15 @@
 import styled from "styled-components";
 import variaveis from "../../styles/variaveis";
 
-export const TitleAbout = styled.h1`
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 48px;
-  font-weight: 400;
-  text-align: center;
-  letter-spacing: 4px;
+export const TitleAbout = styled.div`
   margin-top: 100px;
   margin-bottom: 20px;
-  color: ${variaveis.branco};
-  padding: 0 20px;
-
-  &::before {
-    content: '// ';
-    color: var(--color-highlight);
-    opacity: 0.6;
-    font-size: 0.75em;
-  }
 
   @media (max-width: 768px) {
-    font-size: 36px;
     margin-top: 70px;
   }
 
   @media (max-width: 480px) {
-    font-size: 28px;
     margin-top: 50px;
   }
 `;

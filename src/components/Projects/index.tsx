@@ -1,5 +1,6 @@
 import { useLanguage } from "../../context/LanguageContext";
-import { Container, Title, Description, CardGrid, CardItem } from "./styles";
+import SessionTitle from "../SessionTitle";
+import { Container, Description, CardGrid, CardItem } from "./styles";
 
 const projectsMeta = [
   {
@@ -32,9 +33,7 @@ function Projects() {
 
   return (
     <Container>
-      <Title data-aos="fade-up" data-aos-duration="1000">
-        {t.projects.title}
-      </Title>
+      <SessionTitle session={1}>{t.projects.title}</SessionTitle>
       <Description data-aos="fade-up" data-aos-duration="1000">
         {t.projects.description}
       </Description>

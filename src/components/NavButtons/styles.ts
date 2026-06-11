@@ -28,7 +28,7 @@ export const ToggleBtn = styled.button`
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 200ms ease;
   backdrop-filter: blur(8px);
 
   &:hover {
@@ -36,6 +36,7 @@ export const ToggleBtn = styled.button`
     border-color: var(--color-highlight);
     color: var(--color-highlight);
     transform: translateY(-1px);
+    box-shadow: 0 0 12px var(--bebop-orange-glow);
   }
 
   &:active {

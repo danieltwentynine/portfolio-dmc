@@ -1,7 +1,7 @@
 import { useLanguage } from "../../context/LanguageContext";
+import SessionTitle from "../SessionTitle";
 import {
   SkillsSection,
-  SectionTitle,
   SkillsGrid,
   CategoryCard,
   SkillPill,
@@ -12,9 +12,7 @@ function Skills() {
 
   return (
     <SkillsSection id="skills">
-      <SectionTitle data-aos="fade-up" data-aos-duration="1000">
-        {t.skills.title}
-      </SectionTitle>
+      <SessionTitle session={2}>{t.skills.title}</SessionTitle>
       <SkillsGrid>
         {t.skills.categories.map((cat) => (
           <CategoryCard

@@ -12,6 +12,43 @@ export const TextContainer = styled.div`
   overflow: hidden;
   padding: 0 20px;
 
+  /* keep content above the star field canvas (z-index: 0) */
+  > img,
+  > h1,
+  > p,
+  > ul {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-star-field {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* CRT scanlines, hero only */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.04;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      #000 2px,
+      #000 3px,
+      transparent 3px,
+      transparent 4px,
+      var(--bebop-orange) 4px,
+      var(--bebop-orange) 5px
+    );
+  }
+
   .HeroIcon {
     height: 180px;
     border-radius: 50%;
@@ -95,6 +132,44 @@ export const GradientTitle = styled.h1`
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+
+  /* RGB channel split on hover (class toggled by useGlitch) */
+  &.glitching::before {
+    -webkit-text-fill-color: #ff1a1a;
+    color: #ff1a1a;
+    animation: glitchRed 0.4s steps(3, end);
+  }
+
+  &.glitching::after {
+    -webkit-text-fill-color: #1a6bff;
+    color: #1a6bff;
+    animation: glitchBlue 0.4s steps(3, end);
+  }
+
+  @keyframes glitchRed {
+    0% { transform: translateX(0); opacity: 0.15; clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); }
+    20% { transform: translateX(-6px); opacity: 0.8; clip-path: polygon(0 10%, 100% 10%, 100% 45%, 0 45%); }
+    50% { transform: translateX(-3px); opacity: 0.7; clip-path: polygon(0 35%, 100% 35%, 100% 70%, 0 70%); }
+    80% { transform: translateX(-5px); opacity: 0.6; clip-path: polygon(0 0%, 100% 0%, 100% 30%, 0 30%); }
+    100% { transform: translateX(-2px); opacity: 0.15; clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); }
+  }
+
+  @keyframes glitchBlue {
+    0% { transform: translateX(0); opacity: 0.12; clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); }
+    20% { transform: translateX(6px); opacity: 0.8; clip-path: polygon(0 55%, 100% 55%, 100% 90%, 0 90%); }
+    50% { transform: translateX(3px); opacity: 0.7; clip-path: polygon(0 25%, 100% 25%, 100% 60%, 0 60%); }
+    80% { transform: translateX(5px); opacity: 0.6; clip-path: polygon(0 70%, 100% 70%, 100% 100%, 0 100%); }
+    100% { transform: translateX(2px); opacity: 0.12; clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+
+    &.glitching::before,
+    &.glitching::after {
+      animation: none;
+    }
   }
 
   @media (max-width: 1024px) {

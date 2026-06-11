@@ -38,6 +38,11 @@ const EstiloGlobal = createGlobalStyle`
     --text-muted: rgba(232, 220, 200, 0.25);
     --border-amber: rgba(196, 158, 82, 0.2);
     --border-teal: rgba(106, 157, 181, 0.2);
+
+    /* Cowboy Bebop accent */
+    --bebop-orange: #E8501A;
+    --bebop-orange-glow: rgba(232, 80, 26, 0.5);
+    --bebop-orange-dim: rgba(232, 80, 26, 0.35);
   }
 
   html[data-theme="light"] {
@@ -125,6 +130,17 @@ const EstiloGlobal = createGlobalStyle`
       transparent 50%,
       rgba(0, 0, 0, 0.7) 100%
     );
+  }
+
+  /* Bebop orange glow on interactive elements */
+  button,
+  a {
+    transition: box-shadow 200ms ease;
+  }
+
+  button:hover,
+  a:hover {
+    box-shadow: 0 0 12px var(--bebop-orange-glow);
   }
 
   ::-webkit-scrollbar { width: 4px; }
