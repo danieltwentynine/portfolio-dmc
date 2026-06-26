@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { prefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
-import { introState, JAZZ_PULSE_EVENT, JAZZ_PULSE_WINDOW_MS } from "./introState";
+import { introState, INTRO_STORAGE_KEY, JAZZ_PULSE_EVENT, JAZZ_PULSE_WINDOW_MS } from "./introState";
 import { Overlay } from "./styles";
 
-const STORAGE_KEY = "bebop-intro-played";
 const STEPS = ["1", "2", "3", "Jazz."];
 
 type Phase = "running" | "fading" | "linger" | "done";
 
 function IntroSequence() {
   const [skipped] = useState(
-    () => prefersReducedMotion() || sessionStorage.getItem(STORAGE_KEY) === "1"
+    () => prefersReducedMotion() || sessionStorage.getItem(INTRO_STORAGE_KEY) === "1"
   );
   const [step, setStep] = useState(0);
   const [phase, setPhase] = useState<Phase>("running");
@@ -18,7 +17,7 @@ function IntroSequence() {
 
   useEffect(() => {
     if (skipped) return;
-    sessionStorage.setItem(STORAGE_KEY, "1");
+    sessionStorage.setItem(INTRO_STORAGE_KEY, "1");
 
     const timers = [
       window.setTimeout(() => setStep(1), 400),

@@ -7,6 +7,8 @@ import {
   PageLinks,
   ErrorMsg,
   SuccessMsg,
+  FormUnavailable,
+  HoneypotField,
 } from "./styles";
 import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
@@ -14,8 +16,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useLanguage } from "../../context/LanguageContext";
 import { Language, Translations } from "../../i18n/translations";
+import { isEmailJsConfigured } from "../../utils/emailjs";
 
-type FormFields = { name: string; email: string; message: string };
+type FormFields = {
+  name: string;
+  email: string;
+  message: string;
+  website?: string;
+};
+
+const emailJsReady = isEmailJsConfigured();
 
 function ContactFormBlock({
   t,
@@ -27,9 +37,9 @@ function ContactFormBlock({
   const [submitted, setSubmitted] = useState(false);
 
   const schema = z.object({
-    name: z.string().min(2, t.footer.nameError),
-    email: z.string().email(t.footer.emailError),
-    message: z.string().min(10, t.footer.messageError),
+    name: z.string().trim().min(2, t.footer.nameError).max(100),
+    email: z.string().trim().email(t.footer.emailError).max(254),
+    message: z.string().trim().min(10, t.footer.messageError).max(2000),
   });
 
   const {
@@ -40,11 +50,22 @@ function ContactFormBlock({
   } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: FormFields) => {
+    if (data.website?.trim()) return;
+
+    if (!emailJsReady) {
+      alert(t.footer.unavailable);
+      return;
+    }
+
     try {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        { name: data.name, email: data.email, message: data.message },
+        {
+          name: data.name,
+          email: data.email,
+          message: data.message,
+        },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
       setSubmitted(true);
@@ -55,13 +76,28 @@ function ContactFormBlock({
     }
   };
 
+  if (!emailJsReady) {
+    return <FormUnavailable>{t.footer.unavailable}</FormUnavailable>;
+  }
+
   return (
     <ContactForm key={lang} onSubmit={handleSubmit(onSubmit)} noValidate>
+      <HoneypotField aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("website")}
+        />
+      </HoneypotField>
       <div>
         <input
           type="text"
           placeholder={t.footer.namePlaceholder}
           aria-label={t.footer.namePlaceholder}
+          maxLength={100}
           {...register("name")}
         />
         {errors.name && <ErrorMsg>{errors.name.message}</ErrorMsg>}
@@ -71,6 +107,7 @@ function ContactFormBlock({
           type="email"
           placeholder={t.footer.emailPlaceholder}
           aria-label={t.footer.emailPlaceholder}
+          maxLength={254}
           {...register("email")}
         />
         {errors.email && <ErrorMsg>{errors.email.message}</ErrorMsg>}
@@ -80,6 +117,7 @@ function ContactFormBlock({
           rows={5}
           placeholder={t.footer.messagePlaceholder}
           aria-label={t.footer.messagePlaceholder}
+          maxLength={2000}
           {...register("message")}
         />
         {errors.message && <ErrorMsg>{errors.message.message}</ErrorMsg>}
@@ -104,7 +142,7 @@ function Footer() {
         <li>
           <PageLinks>
             <li>
-              <a href="#">{t.nav.home}</a>
+              <a href="#top">{t.nav.home}</a>
             </li>
             <li>
               <a href="#projects">{t.nav.projects}</a>

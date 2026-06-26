@@ -106,6 +106,12 @@ const EstiloGlobal = createGlobalStyle`
     height: 100%;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    #grain {
+      display: none;
+    }
+  }
+
   .scanlines {
     position: fixed;
     inset: 0;
@@ -149,6 +155,11 @@ const EstiloGlobal = createGlobalStyle`
   ::-webkit-scrollbar-thumb:hover { background: var(--color-highlight); }
 
   @media (max-width: 1024px) {
+    * { cursor: auto; }
+    body { cursor: auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
     * { cursor: auto; }
     body { cursor: auto; }
   }

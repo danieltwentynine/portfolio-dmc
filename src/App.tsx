@@ -17,17 +17,23 @@ import ParticleTrail from "./components/ParticleTrail";
 import AudioToggle from "./components/AudioToggle";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { ThemeToggleProvider } from "./context/ThemeToggleContext";
+import { useGrainOverlay } from "./hooks/useGrainOverlay";
+import { usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 
 function AppInner() {
   const { lang } = useLanguage();
+  const reducedMotion = usePrefersReducedMotion();
+  useGrainOverlay();
 
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-  }, []);
+    AOS.init({ duration: 1000, once: true, disable: reducedMotion });
+  }, [reducedMotion]);
 
   useEffect(() => {
-    AOS.refreshHard();
-  }, [lang]);
+    if (!reducedMotion) {
+      AOS.refreshHard();
+    }
+  }, [lang, reducedMotion]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -35,8 +41,10 @@ function AppInner() {
       <IntroSequence />
       <NavButtons />
       <AudioToggle />
-      <ParticleTrail />
-      <TargetCursor spinDuration={4} hideDefaultCursor={true} />
+      {!reducedMotion && <ParticleTrail />}
+      {!reducedMotion && (
+        <TargetCursor spinDuration={4} hideDefaultCursor={true} />
+      )}
       <Container>
         <div
           style={{
@@ -47,6 +55,7 @@ function AppInner() {
             height: "100vh",
             zIndex: -1,
             opacity: 0.06,
+            pointerEvents: "none",
           }}
         >
           <Squares
@@ -55,6 +64,7 @@ function AppInner() {
             direction="diagonal"
             borderColor="rgba(196, 158, 82, 0.3)"
             hoverFillColor="rgba(196, 158, 82, 0.05)"
+            animated={!reducedMotion}
           />
         </div>
         <Hero />

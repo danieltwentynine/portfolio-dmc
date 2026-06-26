@@ -9,7 +9,7 @@ function Hero() {
   const { glitching, trigger } = useGlitch(400);
 
   return (
-    <TextContainer>
+    <TextContainer id="top">
       <StarField />
       <img className="HeroIcon" src={danielIcon} alt="Daniel M Cardoso" />
       <GradientTitle

@@ -137,6 +137,24 @@ export const SuccessMsg = styled.span`
   padding: 4px 0;
 `;
 
+export const FormUnavailable = styled.p`
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: ${variaveis.cinza};
+  opacity: 0.7;
+  max-width: 420px;
+  line-height: 1.5;
+`;
+
+export const HoneypotField = styled.div`
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`;
+
 export const PageLinks = styled.ul`
   display: flex;
   justify-content: center;

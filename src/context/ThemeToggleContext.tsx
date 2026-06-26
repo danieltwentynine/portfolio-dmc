@@ -2,6 +2,11 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 export type ThemeMode = "dark" | "light";
 
+function readStoredTheme(): ThemeMode {
+  const stored = localStorage.getItem("themeMode");
+  return stored === "dark" || stored === "light" ? stored : "dark";
+}
+
 interface ThemeToggleContextValue {
   mode: ThemeMode;
   toggle: () => void;
@@ -14,7 +19,7 @@ const ThemeToggleContext = createContext<ThemeToggleContextValue>({
 
 export function ThemeToggleProvider({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<ThemeMode>(() => {
-    const saved = (localStorage.getItem("themeMode") as ThemeMode) ?? "dark";
+    const saved = readStoredTheme();
     document.documentElement.setAttribute("data-theme", saved);
     return saved;
   });

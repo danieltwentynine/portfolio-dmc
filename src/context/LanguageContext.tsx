@@ -1,6 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { translations, Language, Translations } from "../i18n/translations";
 
+function readStoredLanguage(): Language {
+  const stored = localStorage.getItem("lang");
+  return stored === "en" || stored === "pt" ? stored : "en";
+}
+
 interface LanguageContextValue {
   lang: Language;
   t: Translations;
@@ -14,9 +19,7 @@ const LanguageContext = createContext<LanguageContextValue>({
 });
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Language>(() => {
-    return (localStorage.getItem("lang") as Language) ?? "en";
-  });
+  const [lang, setLang] = useState<Language>(readStoredLanguage);
 
   const toggleLang = () => {
     const next: Language = lang === "en" ? "pt" : "en";

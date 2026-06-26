@@ -11,6 +11,10 @@ export const translations = {
       skills: "Skills",
       about: "About",
     },
+    audio: {
+      play: "Play lofi jazz",
+      pause: "Pause lofi jazz",
+    },
     projects: {
       title: "PROJECTS",
       description: "Check out some things I've built!",
@@ -127,6 +131,7 @@ export const translations = {
       nameError: "Name must be at least 2 characters",
       emailError: "Enter a valid email address",
       messageError: "Message must be at least 10 characters",
+      unavailable: "Contact form is temporarily unavailable.",
       copyright: "© 2025 Daniel M Cardoso",
     },
   },
@@ -139,6 +144,10 @@ export const translations = {
       projects: "Projetos",
       skills: "Habilidades",
       about: "Sobre",
+    },
+    audio: {
+      play: "Tocar jazz lofi",
+      pause: "Pausar jazz lofi",
     },
     projects: {
       title: "PROJETOS",
@@ -256,6 +265,7 @@ export const translations = {
       nameError: "Nome deve ter pelo menos 2 caracteres",
       emailError: "Digite um endereço de e-mail válido",
       messageError: "Mensagem deve ter pelo menos 10 caracteres",
+      unavailable: "Formulário de contato temporariamente indisponível.",
       copyright: "© 2025 Daniel M Cardoso",
     },
   },
