@@ -240,64 +240,48 @@ export const DescricaoHero = styled.p`
   }
 `;
 
-export const ListaTech = styled.ul`
+export const SocialLinks = styled.ul`
   display: flex;
   justify-content: center;
-  gap: 16px;
-  padding: 16px;
-  flex-wrap: wrap;
+  gap: 32px;
+  padding: 0;
   list-style: none;
-  max-width: 800px;
   margin: 0 auto;
-  border: 1px solid var(--color-surface-border);
-  border-radius: 0;
-  background-color: var(--color-surface);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 0 40px rgba(106, 157, 181, 0.04);
-
-  @media (max-width: 768px) {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    border-radius: 0;
-  }
-
-  @media (max-width: 480px) {
-    gap: 8px;
-    padding: 10px;
-  }
 
   li {
     display: flex;
     align-items: center;
+  }
 
-    img {
-      width: 100%;
-      max-width: 60px;
-      height: 40px;
-      object-fit: contain;
-      transition: all 0.5s ease;
-      transform: translateY(0);
-      opacity: 0.8;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${variaveis.branco};
+    font-size: 26px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
 
-      @media (max-width: 768px) {
-        max-width: 50px;
-        height: 35px;
-      }
+    &:hover {
+      color: var(--amber);
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+  }
 
-      @media (max-width: 480px) {
-        max-width: 40px;
-        height: 30px;
-      }
+  @media (max-width: 768px) {
+    gap: 24px;
 
-      @media (max-width: 380px) {
-        max-width: 35px;
-        height: 25px;
-      }
+    a {
+      font-size: 22px;
+    }
+  }
 
-      &:hover {
-        transform: translateY(-4px) scale(1.02);
-        opacity: 1;
-      }
+  @media (max-width: 480px) {
+    gap: 20px;
+
+    a {
+      font-size: 20px;
     }
   }
 `;
