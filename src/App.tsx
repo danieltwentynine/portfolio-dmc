@@ -12,9 +12,7 @@ import Squares from "./components/Background/Squares";
 import Footer from "./components/Footer";
 import About from "./components/About";
 import NavButtons from "./components/NavButtons";
-import IntroSequence from "./components/IntroSequence";
 import ParticleTrail from "./components/ParticleTrail";
-import AudioToggle from "./components/AudioToggle";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { ThemeToggleProvider } from "./context/ThemeToggleContext";
 import { useGrainOverlay } from "./hooks/useGrainOverlay";
@@ -38,9 +36,7 @@ function AppInner() {
   return (
     <ThemeProvider theme={theme}>
       <EstiloGlobal />
-      <IntroSequence />
       <NavButtons />
-      <AudioToggle />
       {!reducedMotion && <ParticleTrail />}
       {!reducedMotion && (
         <TargetCursor spinDuration={4} hideDefaultCursor={true} />
