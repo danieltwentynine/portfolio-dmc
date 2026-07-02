@@ -12,7 +12,7 @@ export const TextContainer = styled.div`
   overflow: hidden;
   padding: 0 20px;
 
-  /* keep content above the star field canvas (z-index: 0) */
+  /* keep content above the ascii field canvas (z-index: 0) */
   > img,
   > h1,
   > p,
@@ -21,7 +21,7 @@ export const TextContainer = styled.div`
     z-index: 1;
   }
 
-  .hero-star-field {
+  .hero-ascii-field {
     position: absolute;
     inset: 0;
     z-index: 0;
@@ -51,9 +51,21 @@ export const TextContainer = styled.div`
 
   .HeroIcon {
     height: 180px;
+    width: 180px;
+    object-fit: cover;
     border-radius: 50%;
     margin-bottom: 20px;
-    filter: drop-shadow(2px 2px 8px rgba(196, 158, 82, 0.3));
+    border: 1px solid var(--glass-border);
+    /* chromatic halo echoing the portrait */
+    box-shadow: -14px 0 42px var(--glow-red), 14px 0 42px var(--glow-blue);
+
+    @media (max-width: 768px) {
+      width: 100px;
+    }
+
+    @media (max-width: 480px) {
+      width: 80px;
+    }
 
     @media (max-width: 768px) {
       height: 100px;
@@ -72,6 +84,59 @@ export const TextContainer = styled.div`
   @media (max-width: 480px) {
     margin-top: 40px;
     padding: 0 10px;
+  }
+`;
+
+/* fluid chromatic blobs drifting behind the hero, like light bleeding through glass */
+export const FluidGlow = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 55vmax;
+    height: 55vmax;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.8;
+  }
+
+  &::before {
+    background: radial-gradient(circle at center, var(--glow-red), transparent 65%);
+    top: -15%;
+    left: -18%;
+    animation: fluidDriftA 26s ease-in-out infinite alternate;
+  }
+
+  &::after {
+    background: radial-gradient(circle at center, var(--glow-blue), transparent 65%);
+    bottom: -20%;
+    right: -18%;
+    animation: fluidDriftB 32s ease-in-out infinite alternate;
+  }
+
+  @keyframes fluidDriftA {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(10vw, 8vh) scale(1.15); }
+    100% { transform: translate(4vw, 16vh) scale(0.95); }
+  }
+
+  @keyframes fluidDriftB {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-8vw, -10vh) scale(1.1); }
+    100% { transform: translate(-14vw, -4vh) scale(0.9); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before,
+    &::after {
+      animation: none;
+    }
   }
 `;
 
@@ -244,9 +309,15 @@ export const SocialLinks = styled.ul`
   display: flex;
   justify-content: center;
   gap: 32px;
-  padding: 0;
+  padding: 14px 32px;
   list-style: none;
   margin: 0 auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 12px 32px var(--glass-shadow);
 
   li {
     display: flex;

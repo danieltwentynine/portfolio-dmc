@@ -58,8 +58,8 @@ function AppInner() {
             speed={0.5}
             squareSize={40}
             direction="diagonal"
-            borderColor="rgba(196, 158, 82, 0.3)"
-            hoverFillColor="rgba(196, 158, 82, 0.05)"
+            borderColor="rgba(128, 128, 140, 0.35)"
+            hoverFillColor="rgba(128, 128, 140, 0.08)"
             animated={!reducedMotion}
           />
         </div>

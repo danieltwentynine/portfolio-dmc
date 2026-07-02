@@ -1,9 +1,9 @@
 import { FaInstagram, FaLinkedinIn, FaXTwitter, FaEnvelope } from "react-icons/fa6";
-import { DescricaoHero, GradientTitle, TextContainer, SocialLinks } from "./styles";
+import { DescricaoHero, FluidGlow, GradientTitle, TextContainer, SocialLinks } from "./styles";
 import { useLanguage } from "../../context/LanguageContext";
 import { useGlitch } from "../../hooks/useGlitch";
-import StarField from "../StarField";
-import danielIcon from "../../img/danielAnime.png";
+import AsciiField from "../AsciiField";
+import danielPhoto from "../../img/danielPhoto.jpg";
 
 function Hero() {
   const { t } = useLanguage();
@@ -11,8 +11,9 @@ function Hero() {
 
   return (
     <TextContainer id="top">
-      <StarField />
-      <img className="HeroIcon" src={danielIcon} alt="Daniel M Cardoso" />
+      <FluidGlow aria-hidden="true" />
+      <AsciiField />
+      <img className="HeroIcon" src={danielPhoto} alt="Daniel M Cardoso" />
       <GradientTitle
         data-text="Daniel M Cardoso"
         className={glitching ? "glitching" : undefined}

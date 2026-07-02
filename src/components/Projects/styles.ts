@@ -47,11 +47,11 @@ export const CardGrid = styled.div`
 
 export const CardItem = styled.div`
   border: 1px solid var(--color-card-border);
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   background: var(--color-card-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 24px var(--glass-shadow);
   padding: 24px;
   text-align: left;
   line-height: 1.6;
@@ -66,14 +66,14 @@ export const CardItem = styled.div`
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(196, 158, 82, 0.06) 0%, transparent 60%);
+    background: linear-gradient(135deg, var(--amber-glow) 0%, transparent 60%);
     pointer-events: none;
   }
 
   &:hover {
-    border-color: rgba(196, 158, 82, 0.4);
+    border-color: var(--border-amber);
     background: var(--color-card-hover-bg);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(196, 158, 82, 0.06);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 16px 40px var(--glass-shadow), 0 0 20px var(--amber-glow);
   }
 
   .corner {
@@ -123,7 +123,7 @@ export const CardItem = styled.div`
       color: var(--teal);
       background: var(--color-tech-badge-bg);
       border: 1px solid var(--color-tech-badge-border);
-      border-radius: 0;
+      border-radius: var(--radius-sm);
       padding: 3px 10px;
     }
   }
@@ -166,7 +166,7 @@ export const CardItem = styled.div`
       text-transform: uppercase;
       color: ${variaveis.cinza};
       border: 1px solid var(--color-card-border);
-      border-radius: 0;
+      border-radius: var(--radius-sm);
       padding: 3px 10px;
       opacity: 0.6;
     }

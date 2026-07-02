@@ -9,10 +9,10 @@ export const FooterContainer = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 -4px 40px var(--glass-shadow);
   gap: 40px;
   transition: background 0.3s ease;
-  border-top: 1px solid rgba(196, 158, 82, 0.15);
+  border-top: 1px solid var(--border-amber);
 
   p {
     padding-bottom: 20px;
@@ -64,7 +64,9 @@ export const ContactForm = styled.form`
   textarea {
     padding: 12px 14px;
     border: 1px solid var(--color-input-border);
-    border-radius: 0;
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     resize: none;
     font-size: 14px;
     font-family: 'Rajdhani', sans-serif;
@@ -95,18 +97,18 @@ export const ContactForm = styled.form`
     letter-spacing: 3px;
     text-transform: uppercase;
     background-color: var(--color-highlight);
-    color: #0a0a0f;
+    color: var(--color-on-highlight);
     padding: 12px;
     font-weight: 400;
     border: none;
-    border-radius: 0;
+    border-radius: var(--radius-md);
     transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
     margin-top: 4px;
 
     &:hover:not(:disabled) {
       background-color: var(--amber);
       transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(196, 158, 82, 0.3), 0 0 12px var(--bebop-orange-glow);
+      box-shadow: 0 4px 20px var(--amber-dim), 0 0 12px var(--bebop-orange-glow);
     }
 
     &:active:not(:disabled) {

@@ -20,19 +20,21 @@ export const ToggleBtn = styled.button`
   align-items: center;
   gap: 5px;
   padding: 6px 12px;
-  border-radius: 0;
-  border: 1px solid rgba(196, 158, 82, 0.3);
-  background: rgba(196, 158, 82, 0.05);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
   color: var(--color-text);
   font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 200ms ease;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 4px 16px var(--glass-shadow);
 
   &:hover {
-    background: rgba(196, 158, 82, 0.1);
+    background: var(--amber-dim);
     border-color: var(--color-highlight);
     color: var(--color-highlight);
     transform: translateY(-1px);
