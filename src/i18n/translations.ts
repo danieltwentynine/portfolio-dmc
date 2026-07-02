@@ -11,10 +11,6 @@ export const translations = {
       skills: "Skills",
       about: "About",
     },
-    audio: {
-      play: "Play lofi jazz",
-      pause: "Pause lofi jazz",
-    },
     projects: {
       title: "PROJECTS",
       description: "Check out some things I've built!",
@@ -144,10 +140,6 @@ export const translations = {
       projects: "Projetos",
       skills: "Habilidades",
       about: "Sobre",
-    },
-    audio: {
-      play: "Tocar jazz lofi",
-      pause: "Pausar jazz lofi",
     },
     projects: {
       title: "PROJETOS",
