@@ -97,9 +97,11 @@ export const ExperienceItem = styled.div`
   padding: 20px 24px 24px;
   padding-bottom: 32px;
   border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-lg);
   background: var(--color-card-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 24px var(--glass-shadow);
   position: relative;
   overflow: hidden;
   transition: border-color 0.3s ease, background 0.3s ease;
@@ -108,12 +110,12 @@ export const ExperienceItem = styled.div`
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(196, 158, 82, 0.05) 0%, transparent 60%);
+    background: linear-gradient(135deg, var(--amber-glow) 0%, transparent 60%);
     pointer-events: none;
   }
 
   &:hover {
-    border-color: rgba(196, 158, 82, 0.35);
+    border-color: var(--border-amber);
     background: var(--color-card-hover-bg);
   }
 
