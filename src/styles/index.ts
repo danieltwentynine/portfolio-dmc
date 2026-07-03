@@ -5,7 +5,7 @@ const EstiloGlobal = createGlobalStyle`
     scroll-behavior: smooth;
 
     /* typography */
-    --font-display: 'Berkshire Swash', cursive;
+    --font-display: 'Google Sans', sans-serif;
     --font-body: 'Josefin Sans', sans-serif;
 
     /* text selection — same across themes and breakpoints */
