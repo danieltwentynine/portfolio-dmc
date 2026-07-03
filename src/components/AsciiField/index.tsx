@@ -1,32 +1,30 @@
 import { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+import { ART_ROWS, ART_TONES, ART_COLS } from "./swordfishArt";
 
-type Glyph = {
-  x: number;
-  y: number;
+// tone -> paint role; alphas tuned so the art sits behind the hero content
+const TONE_ALPHA: Record<string, number> = { "1": 0.1, "2": 0.34, "3": 0.42 };
+const CHAR_ASPECT = 0.6; // monospace glyph width/height
+const MIN_CHAR_H = 6; // below this the art is unreadable; crop instead of shrinking
+const SHIP_CENTER_X = 0.47; // keep the ship in frame when cropping horizontally
+const EDGE_FADE = 0.12; // fraction of art size over which edges dissolve
+const TWINKLE_COUNT = 140;
+const SWAP_CHARS = "01<>/{}[]();:*+-=#$%&@_|\\~^.".split("");
+
+type Twinkle = {
+  row: number;
+  col: number;
+  speed: number;
+  phase: number;
   char: string;
-  size: number;
-  baseAlpha: number;
-  flickerSpeed: number;
-  flickerPhase: number;
-  driftY: number;
-  accent: "none" | "red" | "blue";
   swapAt: number;
 };
-
-const GLYPH_COUNT = 90;
-const CHARS = "01<>/{}[]();:*+-=#$%&@_|\\~^.".split("");
-
-function randomChar() {
-  return CHARS[Math.floor(Math.random() * CHARS.length)];
-}
 
 function themeColors() {
   const style = getComputedStyle(document.documentElement);
   return {
-    base: style.getPropertyValue("--text-muted").trim() || "rgba(243,239,231,0.28)",
+    text: style.getPropertyValue("--color-text").trim() || "#f3efe7",
     red: style.getPropertyValue("--amber").trim() || "#e85a45",
-    blue: style.getPropertyValue("--teal").trim() || "#7fb3d1",
   };
 }
 
@@ -40,93 +38,143 @@ function AsciiField() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let glyphs: Glyph[] = [];
-    let width = 0;
-    let height = 0;
-    let rafId = 0;
+    const rows = ART_ROWS.length;
     let colors = themeColors();
+    let rafId = 0;
+    let charW = 0;
+    let charH = 0;
+    let originX = 0;
+    let originY = 0;
+    let cropDamp = 1; // quieter when the art overflows small screens
+    let twinkles: Twinkle[] = [];
 
-    const resize = () => {
+    const toneColor = (tone: string) => (tone === "3" ? colors.red : colors.text);
+
+    const edgeFade = (row: number, col: number) => {
+      const fadeR = rows * EDGE_FADE;
+      const fadeC = ART_COLS * EDGE_FADE;
+      const f = Math.min(
+        (row + 1) / fadeR,
+        (rows - row) / fadeR,
+        (col + 1) / fadeC,
+        (ART_COLS - col) / fadeC,
+        1
+      );
+      return f * f; // ease-in so the falloff reads smooth
+    };
+
+    const layout = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = parent.clientWidth;
-      height = parent.clientHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+      const w = parent.clientWidth;
+      const h = parent.clientHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      charH = Math.max(Math.min(h / rows, w / (ART_COLS * CHAR_ASPECT)), MIN_CHAR_H);
+      charW = charH * CHAR_ASPECT;
+      const artW = ART_COLS * charW;
+      const artH = rows * charH;
+      // center; when cropped horizontally, keep the ship in view
+      if (artW <= w) {
+        originX = (w - artW) / 2;
+        cropDamp = 1;
+      } else {
+        originX = Math.min(0, Math.max(w - artW, w / 2 - artW * SHIP_CENTER_X));
+        cropDamp = 0.55;
+      }
+      originY = (h - artH) / 2;
     };
 
-    const seed = () => {
-      glyphs = Array.from({ length: GLYPH_COUNT }, () => {
-        const roll = Math.random();
-        return {
-          x: Math.random() * width,
-          y: Math.random() * height,
-          char: randomChar(),
-          size: 9 + Math.random() * 6,
-          baseAlpha: 0.25 + Math.random() * 0.5,
-          flickerSpeed: 0.3 + Math.random() * 1.4,
-          flickerPhase: Math.random() * Math.PI * 2,
-          driftY: 0.05 + Math.random() * 0.18,
-          accent: roll < 0.08 ? "red" : roll < 0.16 ? "blue" : "none",
-          swapAt: Math.random() * 6000,
-        };
-      });
+    const drawCell = (row: number, col: number, char: string, alpha: number) => {
+      const tone = ART_TONES[row][col];
+      if (tone === "0") return;
+      const x = originX + col * charW;
+      const y = originY + row * charH;
+      if (x < -charW || x > canvas.clientWidth) return;
+      ctx.globalAlpha = alpha * cropDamp * edgeFade(row, col);
+      ctx.fillStyle = toneColor(tone);
+      ctx.fillText(char, x, y);
     };
 
-    const draw = (time: number) => {
-      ctx.clearRect(0, 0, width, height);
-      for (const g of glyphs) {
-        if (!reducedMotion) {
-          g.y += g.driftY;
-          if (g.y > height + 10) {
-            g.y = -10;
-            g.x = Math.random() * width;
-          }
-          if (time > g.swapAt) {
-            g.char = randomChar();
-            g.swapAt = time + 1500 + Math.random() * 6000;
-          }
+    const drawAll = () => {
+      ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+      ctx.font = `${charH}px 'Share Tech Mono', monospace`;
+      ctx.textBaseline = "top";
+      for (let r = 0; r < rows; r++) {
+        const rowChars = ART_ROWS[r];
+        const rowTones = ART_TONES[r];
+        for (let c = 0; c < rowChars.length; c++) {
+          const tone = rowTones[c];
+          if (tone === "0") continue;
+          drawCell(r, c, rowChars[c], TONE_ALPHA[tone]);
         }
-        const flicker = reducedMotion
-          ? 1
-          : 0.55 + 0.45 * Math.sin(time * 0.001 * g.flickerSpeed + g.flickerPhase);
-        const color =
-          g.accent === "red" ? colors.red : g.accent === "blue" ? colors.blue : colors.base;
-        ctx.font = `${g.size}px 'Share Tech Mono', monospace`;
-        ctx.globalAlpha = g.baseAlpha * flicker * (g.accent === "none" ? 1 : 0.7);
-        ctx.fillStyle = color;
-        ctx.fillText(g.char, g.x, g.y);
       }
       ctx.globalAlpha = 1;
     };
 
-    const loop = (time: number) => {
-      draw(time);
-      rafId = requestAnimationFrame(loop);
+    const seedTwinkles = () => {
+      twinkles = [];
+      let guard = 0;
+      while (twinkles.length < TWINKLE_COUNT && guard++ < TWINKLE_COUNT * 40) {
+        const row = Math.floor(Math.random() * rows);
+        const col = Math.floor(Math.random() * ART_COLS);
+        if (ART_TONES[row][col] === "0") continue;
+        twinkles.push({
+          row,
+          col,
+          speed: 0.4 + Math.random() * 1.2,
+          phase: Math.random() * Math.PI * 2,
+          char: ART_ROWS[row][col],
+          swapAt: 2000 + Math.random() * 8000,
+        });
+      }
     };
 
-    resize();
-    seed();
+    const animate = (time: number) => {
+      ctx.font = `${charH}px 'Share Tech Mono', monospace`;
+      ctx.textBaseline = "top";
+      for (const t of twinkles) {
+        if (time > t.swapAt) {
+          // brief glyph swap, then settle back to the artwork's character
+          t.char =
+            t.char === ART_ROWS[t.row][t.col]
+              ? SWAP_CHARS[Math.floor(Math.random() * SWAP_CHARS.length)]
+              : ART_ROWS[t.row][t.col];
+          t.swapAt = time + 1500 + Math.random() * 8000;
+        }
+        const base = TONE_ALPHA[ART_TONES[t.row][t.col]];
+        const flicker = 0.45 + 0.55 * Math.sin(time * 0.001 * t.speed + t.phase);
+        ctx.clearRect(originX + t.col * charW, originY + t.row * charH, charW, charH);
+        drawCell(t.row, t.col, t.char, base * flicker);
+      }
+      ctx.globalAlpha = 1;
+      rafId = requestAnimationFrame(animate);
+    };
 
-    if (reducedMotion) {
-      draw(0);
-    } else {
-      rafId = requestAnimationFrame(loop);
+    const render = () => {
+      layout();
+      drawAll();
+    };
+
+    render();
+    if (!reducedMotion) {
+      seedTwinkles();
+      rafId = requestAnimationFrame(animate);
     }
 
     const onResize = () => {
-      resize();
-      seed();
-      if (reducedMotion) draw(0);
+      render();
+      if (!reducedMotion) seedTwinkles();
     };
     window.addEventListener("resize", onResize);
 
     // re-read accent colors when the theme attribute flips
     const observer = new MutationObserver(() => {
       colors = themeColors();
-      if (reducedMotion) draw(0);
+      drawAll();
     });
     observer.observe(document.documentElement, {
       attributes: true,
