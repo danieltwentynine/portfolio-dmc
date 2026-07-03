@@ -8,6 +8,10 @@ const EstiloGlobal = createGlobalStyle`
     --font-display: 'Berkshire Swash', cursive;
     --font-body: 'Josefin Sans', sans-serif;
 
+    /* text selection — same across themes and breakpoints */
+    --color-selection-bg: #e87171;
+    --color-selection-text: #1b1b1e;
+
     /* Chromatic portrait — dark (carbon black) */
     --color-bg: #121214;
     --color-bg-opaque: rgba(18, 18, 20, 0.75);
@@ -120,6 +124,16 @@ const EstiloGlobal = createGlobalStyle`
 
   a {
     cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-selection-bg);
+    color: var(--color-selection-text);
+  }
+
+  ::-moz-selection {
+    background: var(--color-selection-bg);
+    color: var(--color-selection-text);
   }
 
   body {
