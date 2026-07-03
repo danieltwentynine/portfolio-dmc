@@ -122,7 +122,7 @@ export const FluidGlow = styled.div`
 export const GradientTitle = styled.h1`
   font-family: var(--font-display);
   font-size: 84px;
-  font-weight: 400;
+  font-weight: bold;
   letter-spacing: 2px;
   background: linear-gradient(to right, var(--teal), var(--amber));
   background-size: 200% 200%;
@@ -241,7 +241,7 @@ export const DescricaoHero = styled.p`
 
   span {
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
