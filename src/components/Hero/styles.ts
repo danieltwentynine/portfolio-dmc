@@ -28,27 +28,6 @@ export const TextContainer = styled.div`
     pointer-events: none;
   }
 
-  /* CRT scanlines, hero only */
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    opacity: 0.04;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 2px,
-      #000 2px,
-      #000 3px,
-      transparent 3px,
-      transparent 4px,
-      var(--bebop-orange) 4px,
-      var(--bebop-orange) 5px
-    );
-  }
-
   .HeroIcon {
     height: 180px;
     width: 180px;
@@ -141,10 +120,10 @@ export const FluidGlow = styled.div`
 `;
 
 export const GradientTitle = styled.h1`
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 100px;
+  font-family: var(--font-display);
+  font-size: 84px;
   font-weight: 400;
-  letter-spacing: 6px;
+  letter-spacing: 2px;
   background: linear-gradient(to right, var(--teal), var(--amber));
   background-size: 200% 200%;
   animation: gradientMove 6s ease-in-out infinite;
@@ -238,16 +217,16 @@ export const GradientTitle = styled.h1`
   }
 
   @media (max-width: 1024px) {
-    font-size: 60px;
+    font-size: 56px;
   }
 
   @media (max-width: 768px) {
-    font-size: 40px;
+    font-size: 38px;
   }
 
   @media (max-width: 480px) {
-    font-size: 28px;
-    letter-spacing: 4px;
+    font-size: 27px;
+    letter-spacing: 1px;
   }
 `;
 
@@ -261,7 +240,8 @@ export const DescricaoHero = styled.p`
   line-height: 1.5;
 
   span {
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-body);
+    font-weight: 300;
     font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -315,9 +295,9 @@ export const SocialLinks = styled.ul`
   border-radius: var(--radius-lg);
   border: 1px solid var(--glass-border);
   background: var(--glass-bg);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 12px 32px var(--glass-shadow);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 32px var(--glass-shadow);
 
   li {
     display: flex;

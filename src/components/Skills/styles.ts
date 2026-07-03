@@ -30,12 +30,12 @@ export const SkillsGrid = styled.div`
 `;
 
 export const CategoryCard = styled.div`
-  border: 1px solid var(--color-card-border);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  background: var(--color-card-bg);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 24px var(--glass-shadow);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 32px var(--glass-shadow);
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -50,26 +50,13 @@ export const CategoryCard = styled.div`
   }
 
   &:hover {
-    border-color: var(--border-amber);
-    background: var(--color-card-hover-bg);
+    border-color: var(--glass-border-hover);
+    background: var(--glass-bg-hover);
     box-shadow: inset 0 1px 0 var(--glass-highlight), 0 16px 40px var(--glass-shadow), 0 0 16px var(--amber-glow);
   }
 
-  .corner {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    pointer-events: none;
-    z-index: 1;
-
-    &.tl { top: 0; left: 0; border-top: 1px solid var(--amber); border-left: 1px solid var(--amber); }
-    &.tr { top: 0; right: 0; border-top: 1px solid var(--amber); border-right: 1px solid var(--amber); }
-    &.bl { bottom: 0; left: 0; border-bottom: 1px solid var(--amber); border-left: 1px solid var(--amber); }
-    &.br { bottom: 0; right: 0; border-bottom: 1px solid var(--amber); border-right: 1px solid var(--amber); }
-  }
-
   h3 {
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-body);
     color: var(--color-highlight);
     font-size: 10px;
     font-weight: 400;
@@ -93,19 +80,17 @@ export const CategoryCard = styled.div`
 `;
 
 export const SkillPill = styled.li`
-  font-family: 'Share Tech Mono', monospace;
+  font-family: var(--font-body);
   font-size: 9px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  padding: 4px 10px;
-  border: 1px solid var(--teal-dim);
+  padding: 5px 10px 4px;
   color: var(--teal);
   background: var(--teal-glow);
   border-radius: var(--radius-sm);
-  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  transition: color 0.2s ease, background 0.2s ease;
 
   &:hover {
-    border-color: var(--teal);
     color: var(--color-text);
     background: var(--color-tech-badge-bg);
   }

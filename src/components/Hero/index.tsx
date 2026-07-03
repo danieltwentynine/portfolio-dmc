@@ -26,22 +26,37 @@ function Hero() {
       </DescricaoHero>
       <SocialLinks>
         <li>
-          <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.instagram.com/daniel_m_cardoso"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaInstagram />
           </a>
         </li>
         <li>
-          <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.linkedin.com/in/dn13lmc/"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaLinkedinIn />
           </a>
         </li>
         <li>
-          <a href="#" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://x.com/pickyhipster"
+            aria-label="X (Twitter)"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaXTwitter />
           </a>
         </li>
         <li>
-          <a href="#" aria-label="Email">
+          <a href="mailto:danielmcardoso2016@protonmail.com" aria-label="Email">
             <FaEnvelope />
           </a>
         </li>

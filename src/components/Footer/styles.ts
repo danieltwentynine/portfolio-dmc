@@ -12,12 +12,11 @@ export const FooterContainer = styled.footer`
   box-shadow: 0 -4px 40px var(--glass-shadow);
   gap: 40px;
   transition: background 0.3s ease;
-  border-top: 1px solid var(--border-amber);
 
   p {
     padding-bottom: 20px;
     color: ${variaveis.cinza};
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-body);
     font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -65,11 +64,11 @@ export const ContactForm = styled.form`
     padding: 12px 14px;
     border: 1px solid var(--color-input-border);
     border-radius: var(--radius-md);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     resize: none;
     font-size: 14px;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     background-color: var(--color-input-bg);
     color: ${variaveis.branco};
@@ -86,13 +85,13 @@ export const ContactForm = styled.form`
   textarea::placeholder {
     color: ${variaveis.cinza};
     opacity: 0.5;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-body);
     font-size: 11px;
     letter-spacing: 1px;
   }
 
   button {
-    font-family: 'Share Tech Mono', monospace;
+    font-family: var(--font-body);
     font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -122,7 +121,7 @@ export const ContactForm = styled.form`
 `;
 
 export const ErrorMsg = styled.span`
-  font-family: 'Share Tech Mono', monospace;
+  font-family: var(--font-body);
   font-size: 10px;
   letter-spacing: 1px;
   color: #e87171;
@@ -130,7 +129,7 @@ export const ErrorMsg = styled.span`
 `;
 
 export const SuccessMsg = styled.span`
-  font-family: 'Share Tech Mono', monospace;
+  font-family: var(--font-body);
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -140,7 +139,7 @@ export const SuccessMsg = styled.span`
 `;
 
 export const FormUnavailable = styled.p`
-  font-family: 'Share Tech Mono', monospace;
+  font-family: var(--font-body);
   font-size: 11px;
   letter-spacing: 1px;
   color: ${variaveis.cinza};
@@ -171,7 +170,7 @@ export const PageLinks = styled.ul`
 
   li {
     a {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: var(--font-body);
       font-size: 10px;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -218,7 +217,7 @@ export const SocialLinks = styled.ul`
 
   li {
     a {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: var(--font-body);
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;

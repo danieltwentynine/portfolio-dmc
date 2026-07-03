@@ -9,12 +9,8 @@ export const TitleWrap = styled.div`
   padding: 0 20px;
 
   h2 {
-    font-family: 'Share Tech Mono', monospace;
     font-weight: 400;
-    font-size: 28px;
-    text-transform: lowercase;
-    font-variant: small-caps;
-    letter-spacing: 5px;
+    font-size: 30px;
     color: var(--color-text);
     display: flex;
     align-items: baseline;
@@ -24,8 +20,19 @@ export const TitleWrap = styled.div`
     text-align: center;
   }
 
+  /* script + tracked-caps lockup; spans need explicit fonts
+     because the global * rule overrides inheritance */
   .session-number {
+    font-family: var(--font-display);
+    letter-spacing: 1px;
     color: var(--bebop-orange);
+  }
+
+  .session-name {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.75em;
+    letter-spacing: 5px;
   }
 
   .session-divider {
@@ -48,16 +55,14 @@ export const TitleWrap = styled.div`
 
   @media (max-width: 768px) {
     h2 {
-      font-size: 20px;
-      letter-spacing: 3px;
+      font-size: 22px;
       gap: 10px;
     }
   }
 
   @media (max-width: 480px) {
     h2 {
-      font-size: 16px;
-      letter-spacing: 2px;
+      font-size: 18px;
       gap: 8px;
     }
   }

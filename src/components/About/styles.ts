@@ -45,7 +45,7 @@ export const SummaryBlock = styled.p`
   padding-left: 16px;
   margin-bottom: 48px;
   font-style: italic;
-  font-family: 'Rajdhani', sans-serif;
+  font-family: var(--font-body);
 
   @media (max-width: 600px) {
     font-size: 14px;
@@ -61,11 +61,11 @@ export const AboutList = styled.ul`
     margin-bottom: 48px;
 
     h2 {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-display);
       font-weight: 400;
       margin-bottom: 20px;
       font-size: 26px;
-      letter-spacing: 3px;
+      letter-spacing: 1px;
       color: var(--color-highlight);
 
       &::before {
@@ -96,12 +96,12 @@ export const ExperienceItem = styled.div`
   margin-bottom: 36px;
   padding: 20px 24px 24px;
   padding-bottom: 32px;
-  border: 1px solid var(--color-card-border);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  background: var(--color-card-bg);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 24px var(--glass-shadow);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 32px var(--glass-shadow);
   position: relative;
   overflow: hidden;
   transition: border-color 0.3s ease, background 0.3s ease;
@@ -115,21 +115,8 @@ export const ExperienceItem = styled.div`
   }
 
   &:hover {
-    border-color: var(--border-amber);
-    background: var(--color-card-hover-bg);
-  }
-
-  .corner {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    pointer-events: none;
-    z-index: 1;
-
-    &.tl { top: 0; left: 0; border-top: 1px solid var(--amber); border-left: 1px solid var(--amber); }
-    &.tr { top: 0; right: 0; border-top: 1px solid var(--amber); border-right: 1px solid var(--amber); }
-    &.bl { bottom: 0; left: 0; border-bottom: 1px solid var(--amber); border-left: 1px solid var(--amber); }
-    &.br { bottom: 0; right: 0; border-bottom: 1px solid var(--amber); border-right: 1px solid var(--amber); }
+    border-color: var(--glass-border-hover);
+    background: var(--glass-bg-hover);
   }
 
   h3 {
@@ -147,7 +134,7 @@ export const ExperienceItem = styled.div`
 `;
 
 export const CompanyMeta = styled.p`
-  font-family: 'Share Tech Mono', monospace;
+  font-family: var(--font-body);
   font-size: 11px;
   letter-spacing: 1.5px;
   text-transform: uppercase;

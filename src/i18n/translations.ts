@@ -19,11 +19,6 @@ export const translations = {
       corporate: "Corporate Project",
       list: [
         {
-          title: "Daniel's Portfolio",
-          description:
-            "This portfolio — built with React, TypeScript, and Styled Components.",
-        },
-        {
           title: "YouTube Analyzer",
           description:
             "CLI tool that downloads YouTube audio, transcribes with Whisper, and generates a summary, mind map, and metadata using a local LLM (Ollama/Mistral). No paid APIs.",
@@ -32,11 +27,6 @@ export const translations = {
           title: "Internal Comms Automation",
           description:
             "End-to-end WhatsApp pipeline at Besten Consultoria: daily deliverable updates, event announcements, and birthday messages via WhatsApp Business API, n8n, and OpenAI.",
-        },
-        {
-          title: "YooYle Search",
-          description:
-            "Frontend project focusing on HTML, CSS, and JavaScript fundamentals.",
         },
         {
           title: "E-Food",
@@ -149,11 +139,6 @@ export const translations = {
       corporate: "Projeto Corporativo",
       list: [
         {
-          title: "Portfólio Daniel",
-          description:
-            "Este portfólio — construído com React, TypeScript e Styled Components.",
-        },
-        {
           title: "YouTube Analyzer",
           description:
             "CLI que baixa áudio do YouTube, transcreve com Whisper e gera resumo, mapa mental e metadados usando LLM local (Ollama/Mistral). Sem APIs pagas.",
@@ -162,11 +147,6 @@ export const translations = {
           title: "Automação de Comunicação Interna",
           description:
             "Pipeline de automação via WhatsApp na Besten Consultoria: resumos de entregas diários, avisos de eventos e aniversários via WhatsApp Business API, n8n e OpenAI.",
-        },
-        {
-          title: "YooYle Search",
-          description:
-            "Projeto frontend com foco nos fundamentos de HTML, CSS e JavaScript.",
         },
         {
           title: "E-Food",

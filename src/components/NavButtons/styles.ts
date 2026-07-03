@@ -24,13 +24,13 @@ export const ToggleBtn = styled.button`
   border: 1px solid var(--glass-border);
   background: var(--glass-bg);
   color: var(--color-text);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: var(--font-body);
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 200ms ease;
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: inset 0 1px 0 var(--glass-highlight), 0 4px 16px var(--glass-shadow);
 
   &:hover {

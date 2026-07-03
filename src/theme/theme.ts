@@ -25,7 +25,7 @@ export const theme = {
     xl: "32px",
   },
   borderRadius: {
-    sm: "8px",
+    sm: "12px",
     md: "16px",
     lg: "24px",
     full: "50%",

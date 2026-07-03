@@ -15,16 +15,7 @@ function Skills() {
       <SessionTitle session={2}>{t.skills.title}</SessionTitle>
       <SkillsGrid>
         {t.skills.categories.map((cat, i) => (
-          <CategoryCard
-            key={i}
-            data-aos="zoom-in-up"
-            data-aos-duration="1000"
-            className="cursor-target"
-          >
-            <span className="corner tl" />
-            <span className="corner tr" />
-            <span className="corner bl" />
-            <span className="corner br" />
+          <CategoryCard key={i} data-aos="zoom-in-up" data-aos-duration="1000">
             <h3>{cat.name}</h3>
             <ul>
               {cat.items.map((skill) => (

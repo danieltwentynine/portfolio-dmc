@@ -12,7 +12,7 @@ function NavButtons() {
 
   return (
     <ButtonsWrapper>
-      <ToggleBtn onClick={toggleLang} title="Toggle language" className="cursor-target">
+      <ToggleBtn onClick={toggleLang} title="Toggle language">
         <Globe size={13} />
         {lang === "en" ? "PT" : "EN"}
       </ToggleBtn>
@@ -20,7 +20,6 @@ function NavButtons() {
         onClick={toggleTheme}
         title={`Theme: ${mode}`}
         aria-label={`Theme: ${mode}`}
-        className="cursor-target"
       >
         {themeIcon}
       </ToggleBtn>

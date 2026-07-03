@@ -4,22 +4,12 @@ import { Container, Description, CardGrid, CardItem } from "./styles";
 
 const projectsMeta = [
   {
-    tech: ["React", "TypeScript", "Styled Components", "GSAP", "AOS"],
-    live: "https://portfolio-dmc.vercel.app/",
-    github: "https://github.com/danieltwentynine/portfolio-dmc",
-  },
-  {
     tech: ["Python", "yt-dlp", "Whisper", "Ollama"],
     github: "https://github.com/danieltwentynine/yt-analyzer",
   },
   {
     tech: ["WhatsApp Business API", "n8n", "OpenAI API"],
     corporate: true,
-  },
-  {
-    tech: ["HTML5", "CSS3", "SCSS", "JavaScript"],
-    live: "https://yooyle-search.vercel.app/",
-    github: "https://github.com/danieltwentynine/yooyle",
   },
   {
     tech: ["React", "TypeScript", "Styled Components", "AJAX"],
@@ -42,16 +32,7 @@ function Projects() {
         {t.projects.list.map((info, i) => {
           const meta = projectsMeta[i];
           return (
-            <CardItem
-              key={i}
-              data-aos="zoom-in-up"
-              data-aos-duration="1000"
-              className="cursor-target"
-            >
-              <span className="corner tl" />
-              <span className="corner tr" />
-              <span className="corner bl" />
-              <span className="corner br" />
+            <CardItem key={i} data-aos="zoom-in-up" data-aos-duration="1000">
               <h3>{info.title}</h3>
               <p>{info.description}</p>
               <ul className="tech-list">

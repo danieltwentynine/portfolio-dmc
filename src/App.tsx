@@ -7,12 +7,10 @@ import EstiloGlobal, { Container } from "./styles/index";
 import { theme } from "./theme/theme";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import TargetCursor from "./components/Cursor/TargetCursor";
 import Squares from "./components/Background/Squares";
 import Footer from "./components/Footer";
 import About from "./components/About";
 import NavButtons from "./components/NavButtons";
-import ParticleTrail from "./components/ParticleTrail";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { ThemeToggleProvider } from "./context/ThemeToggleContext";
 import { useGrainOverlay } from "./hooks/useGrainOverlay";
@@ -37,10 +35,6 @@ function AppInner() {
     <ThemeProvider theme={theme}>
       <EstiloGlobal />
       <NavButtons />
-      {!reducedMotion && <ParticleTrail />}
-      {!reducedMotion && (
-        <TargetCursor spinDuration={4} hideDefaultCursor={true} />
-      )}
       <Container>
         <div
           style={{

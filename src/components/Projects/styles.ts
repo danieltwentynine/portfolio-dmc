@@ -46,12 +46,12 @@ export const CardGrid = styled.div`
 `;
 
 export const CardItem = styled.div`
-  border: 1px solid var(--color-card-border);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  background: var(--color-card-bg);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 24px var(--glass-shadow);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 1px 0 var(--glass-highlight), 0 8px 32px var(--glass-shadow);
   padding: 24px;
   text-align: left;
   line-height: 1.6;
@@ -71,22 +71,9 @@ export const CardItem = styled.div`
   }
 
   &:hover {
-    border-color: var(--border-amber);
-    background: var(--color-card-hover-bg);
+    border-color: var(--glass-border-hover);
+    background: var(--glass-bg-hover);
     box-shadow: inset 0 1px 0 var(--glass-highlight), 0 16px 40px var(--glass-shadow), 0 0 20px var(--amber-glow);
-  }
-
-  .corner {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    pointer-events: none;
-    z-index: 1;
-
-    &.tl { top: 0; left: 0; border-top: 1px solid var(--amber); border-left: 1px solid var(--amber); }
-    &.tr { top: 0; right: 0; border-top: 1px solid var(--amber); border-right: 1px solid var(--amber); }
-    &.bl { bottom: 0; left: 0; border-bottom: 1px solid var(--amber); border-left: 1px solid var(--amber); }
-    &.br { bottom: 0; right: 0; border-bottom: 1px solid var(--amber); border-right: 1px solid var(--amber); }
   }
 
   h3 {
@@ -116,15 +103,14 @@ export const CardItem = styled.div`
     z-index: 1;
 
     li {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: var(--font-body);
       font-size: 9px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--teal);
       background: var(--color-tech-badge-bg);
-      border: 1px solid var(--color-tech-badge-border);
       border-radius: var(--radius-sm);
-      padding: 3px 10px;
+      padding: 4px 10px 3px;
     }
   }
 
@@ -137,7 +123,7 @@ export const CardItem = styled.div`
     z-index: 1;
 
     a {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: var(--font-body);
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -160,14 +146,14 @@ export const CardItem = styled.div`
     }
 
     .corporate-badge {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: var(--font-body);
       font-size: 9px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: ${variaveis.cinza};
-      border: 1px solid var(--color-card-border);
+      background: var(--glass-bg);
       border-radius: var(--radius-sm);
-      padding: 3px 10px;
+      padding: 4px 10px 3px;
       opacity: 0.6;
     }
   }
