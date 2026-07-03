@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+.claude
 
 # testing
 /coverage
@@ -23,3 +24,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+verify-shots
+img
+

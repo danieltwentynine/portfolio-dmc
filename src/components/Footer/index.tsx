@@ -166,7 +166,7 @@ function Footer() {
             </li>
             <li>
               <a
-                href="https://x.com/0nepercentdan"
+                href="https://x.com/pickyhipster"
                 target="_blank"
                 rel="noopener noreferrer"
               >

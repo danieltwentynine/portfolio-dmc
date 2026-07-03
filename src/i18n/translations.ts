@@ -118,7 +118,7 @@ export const translations = {
       emailError: "Enter a valid email address",
       messageError: "Message must be at least 10 characters",
       unavailable: "Contact form is temporarily unavailable.",
-      copyright: "© 2025 Daniel M Cardoso",
+      copyright: "© 2026 Daniel M Cardoso",
     },
   },
   pt: {
@@ -238,7 +238,7 @@ export const translations = {
       emailError: "Digite um endereço de e-mail válido",
       messageError: "Mensagem deve ter pelo menos 10 caracteres",
       unavailable: "Formulário de contato temporariamente indisponível.",
-      copyright: "© 2025 Daniel M Cardoso",
+      copyright: "© 2026 Daniel M Cardoso",
     },
   },
 };
