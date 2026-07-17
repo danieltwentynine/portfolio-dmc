@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
-const GRAIN_INTERVAL_MS = 50;
+const GRAIN_INTERVAL_MS = 66;
 
 export function useGrainOverlay() {
   const reducedMotion = usePrefersReducedMotion();
@@ -20,8 +20,9 @@ export function useGrainOverlay() {
     if (!ctx) return;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // half resolution: the grain is blended at 13% opacity, full res is wasted work
+      canvas.width = window.innerWidth / 2;
+      canvas.height = window.innerHeight / 2;
     };
 
     const renderGrain = () => {
