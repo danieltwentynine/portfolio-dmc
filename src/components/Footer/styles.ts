@@ -120,14 +120,6 @@ export const ContactForm = styled.form`
   }
 `;
 
-export const ErrorMsg = styled.span`
-  font-family: var(--font-body);
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: #e87171;
-  padding-left: 2px;
-`;
-
 export const SuccessMsg = styled.span`
   font-family: var(--font-body);
   font-size: 10px;

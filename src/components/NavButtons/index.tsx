@@ -1,4 +1,4 @@
-import { Moon, Sun, Monitor, Globe } from "lucide-react";
+import { LuMoon as Moon, LuSun as Sun, LuMonitor as Monitor, LuGlobe as Globe } from "react-icons/lu";
 import { useThemeMode } from "../../context/ThemeToggleContext";
 import { useLanguage } from "../../context/LanguageContext";
 import { ButtonsWrapper, ToggleBtn } from "./styles";

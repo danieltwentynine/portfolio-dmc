@@ -5,25 +5,14 @@ import {
   FooterList,
   SocialLinks,
   PageLinks,
-  ErrorMsg,
   SuccessMsg,
   FormUnavailable,
   HoneypotField,
 } from "./styles";
 import emailjs from "@emailjs/browser";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useLanguage } from "../../context/LanguageContext";
 import { Language, Translations } from "../../i18n/translations";
 import { isEmailJsConfigured } from "../../utils/emailjs";
-
-type FormFields = {
-  name: string;
-  email: string;
-  message: string;
-  website?: string;
-};
 
 const emailJsReady = isEmailJsConfigured();
 
@@ -35,44 +24,33 @@ function ContactFormBlock({
   lang: Language;
 }) {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const schema = z.object({
-    name: z.string().trim().min(2, t.footer.nameError).max(100),
-    email: z.string().trim().email(t.footer.emailError).max(254),
-    message: z.string().trim().min(10, t.footer.messageError).max(2000),
-  });
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    if (String(data.get("website") ?? "").trim()) return;
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<FormFields>({ resolver: zodResolver(schema) });
-
-  const onSubmit = async (data: FormFields) => {
-    if (data.website?.trim()) return;
-
-    if (!emailJsReady) {
-      alert(t.footer.unavailable);
-      return;
-    }
-
+    setSending(true);
     try {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          name: data.name,
-          email: data.email,
-          message: data.message,
+          name: String(data.get("name")).trim(),
+          email: String(data.get("email")).trim(),
+          message: String(data.get("message")).trim(),
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
       setSubmitted(true);
-      reset();
+      form.reset();
       setTimeout(() => setSubmitted(false), 5000);
     } catch {
       alert(t.footer.error);
+    } finally {
+      setSending(false);
     }
   };
 
@@ -81,50 +59,52 @@ function ContactFormBlock({
   }
 
   return (
-    <ContactForm key={lang} onSubmit={handleSubmit(onSubmit)} noValidate>
+    <ContactForm key={lang} onSubmit={onSubmit}>
       <HoneypotField aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input
           id="website"
+          name="website"
           type="text"
           tabIndex={-1}
           autoComplete="off"
-          {...register("website")}
         />
       </HoneypotField>
       <div>
         <input
           type="text"
+          name="name"
           placeholder={t.footer.namePlaceholder}
           aria-label={t.footer.namePlaceholder}
+          required
+          minLength={2}
           maxLength={100}
-          {...register("name")}
         />
-        {errors.name && <ErrorMsg>{errors.name.message}</ErrorMsg>}
       </div>
       <div>
         <input
           type="email"
+          name="email"
           placeholder={t.footer.emailPlaceholder}
           aria-label={t.footer.emailPlaceholder}
+          required
           maxLength={254}
-          {...register("email")}
         />
-        {errors.email && <ErrorMsg>{errors.email.message}</ErrorMsg>}
       </div>
       <div>
         <textarea
           rows={5}
+          name="message"
           placeholder={t.footer.messagePlaceholder}
           aria-label={t.footer.messagePlaceholder}
+          required
+          minLength={10}
           maxLength={2000}
-          {...register("message")}
         />
-        {errors.message && <ErrorMsg>{errors.message.message}</ErrorMsg>}
       </div>
       {submitted && <SuccessMsg>{t.footer.success}</SuccessMsg>}
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? t.footer.sending : t.footer.send}
+      <button type="submit" disabled={sending}>
+        {sending ? t.footer.sending : t.footer.send}
       </button>
     </ContactForm>
   );

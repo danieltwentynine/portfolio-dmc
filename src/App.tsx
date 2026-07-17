@@ -48,14 +48,7 @@ function AppInner() {
             pointerEvents: "none",
           }}
         >
-          <Squares
-            speed={0.5}
-            squareSize={40}
-            direction="diagonal"
-            borderColor="rgba(128, 128, 140, 0.35)"
-            hoverFillColor="rgba(128, 128, 140, 0.08)"
-            animated={!reducedMotion}
-          />
+          <Squares animated={!reducedMotion} />
         </div>
         <Hero />
         <Projects />
