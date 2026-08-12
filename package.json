@@ -9,7 +9,9 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "personal:init": "node scripts/personal.mjs init",
+    "personal:env": "node scripts/personal.mjs env"
   },
   "devDependencies": {
     "@types/node": "^20.19.41",

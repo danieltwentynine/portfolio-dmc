@@ -13,6 +13,9 @@
 /build
 /dist
 
+# personal data — real contact/employer details, never committed (see README)
+/src/data/personal.local.json
+
 # misc
 /verify-shots
 .DS_Store

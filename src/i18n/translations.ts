@@ -18,7 +18,7 @@ export const translations = {
     figSource: "SRC: Photograph",
     scrollHint: "Scroll for more",
     projectsName: "Projects",
-    projectsSub: "Field Records — 3 Entries",
+    projectsSub: "Field Records — 2 Entries",
     stackLabel: "Stack",
     sourceLabel: "Source",
     liveLabel: "Live",
@@ -32,11 +32,7 @@ export const translations = {
       {
         title: "Internal Comms Automation",
         description:
-          "End-to-end WhatsApp pipeline at Besten Consultoria: daily deliverable updates, event announcements, and birthday messages via WhatsApp Business API, n8n, and OpenAI.",
-      },
-      {
-        title: "E-Food",
-        description: "A full-featured website to order food online.",
+          "End-to-end WhatsApp pipeline: daily deliverable updates, event announcements, and birthday messages via WhatsApp Business API, n8n, and OpenAI.",
       },
     ],
     skillsName: "Skills",
@@ -59,8 +55,6 @@ export const translations = {
     jobs: [
       {
         role: "Automation Specialist & Full Stack Developer",
-        company: "Besten Consultoria",
-        period: "Jan 2025 — Feb 2026",
         location: "Barueri, SP · Hybrid",
         bullets: [
           "Built and maintained full stack web applications using HTML, CSS, TypeScript, and modern frameworks",
@@ -72,8 +66,6 @@ export const translations = {
       },
       {
         role: "Helpdesk Analyst",
-        company: "IATec – Instituto Adventista de Tecnologia",
-        period: "Jan 2023 — Jan 2024",
         location: "Hortolândia, SP · On-site",
         bullets: [
           "Provided technical support to 200+ users in a corporate Windows/Mac/Linux environment",
@@ -86,7 +78,6 @@ export const translations = {
     educationName: "Education",
     educationSub: "Formation Record",
     eduTitle: "Computer Engineering",
-    eduPeriod: "Feb 2021 — Dec 2026",
     eduLocation: "Hortolândia, SP · Brazil",
     contactName: "Contact",
     contactSub: "Transmission",
@@ -111,7 +102,7 @@ export const translations = {
     figSource: "SRC: Fotografia",
     scrollHint: "Role para continuar",
     projectsName: "Projetos",
-    projectsSub: "Registros de Campo — 3 Entradas",
+    projectsSub: "Registros de Campo — 2 Entradas",
     stackLabel: "Stack",
     sourceLabel: "Código",
     liveLabel: "Online",
@@ -125,11 +116,7 @@ export const translations = {
       {
         title: "Automação de Comunicação Interna",
         description:
-          "Pipeline de automação via WhatsApp na Besten Consultoria: resumos de entregas diários, avisos de eventos e aniversários via WhatsApp Business API, n8n e OpenAI.",
-      },
-      {
-        title: "E-Food",
-        description: "Site completo para pedidos de comida online.",
+          "Pipeline de automação via WhatsApp: resumos de entregas diários, avisos de eventos e aniversários via WhatsApp Business API, n8n e OpenAI.",
       },
     ],
     skillsName: "Habilidades",
@@ -152,8 +139,6 @@ export const translations = {
     jobs: [
       {
         role: "Especialista em Automação & Dev Full Stack",
-        company: "Besten Consultoria",
-        period: "Jan 2025 — Fev 2026",
         location: "Barueri, SP · Híbrido",
         bullets: [
           "Construí e mantive aplicações web full stack com HTML, CSS, TypeScript e frameworks modernos",
@@ -165,8 +150,6 @@ export const translations = {
       },
       {
         role: "Analista de Helpdesk",
-        company: "IATec – Instituto Adventista de Tecnologia",
-        period: "Jan 2023 — Jan 2024",
         location: "Hortolândia, SP · Presencial",
         bullets: [
           "Forneci suporte técnico a 200+ usuários em ambiente Windows/Mac/Linux",
@@ -179,7 +162,6 @@ export const translations = {
     educationName: "Formação",
     educationSub: "Registro Acadêmico",
     eduTitle: "Engenharia da Computação",
-    eduPeriod: "Fev 2021 — Dez 2026",
     eduLocation: "Hortolândia, SP · Brasil",
     contactName: "Contato",
     contactSub: "Transmissão",

@@ -3,6 +3,7 @@ import "./styles.css";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { useGrainOverlay } from "./hooks/useGrainOverlay";
 import { prefersReducedMotion } from "./hooks/usePrefersReducedMotion";
+import { personal } from "./data/personal";
 import photo from "./img/danielPhoto.jpg";
 
 const CHAPTER_IDS = ["ch00", "ch01", "ch02", "ch03", "ch04", "ch05"];
@@ -21,20 +22,6 @@ const PROJECT_META = [
     live: null,
     corporate: true,
   },
-  {
-    stack: "React · TypeScript · Styled Components · AJAX",
-    github: "https://github.com/danieltwentynine/dmc-food",
-    live: "https://dmc-food.vercel.app",
-    corporate: false,
-  },
-];
-
-const CONTACT_LINKS = [
-  { k: "EMAIL", label: "danielmcardoso2016@protonmail.com", href: "mailto:danielmcardoso2016@protonmail.com" },
-  { k: "LINKEDIN", label: "linkedin.com/in/dn13lmc", href: "https://www.linkedin.com/in/dn13lmc/" },
-  { k: "GITHUB", label: "github.com/danieltwentynine", href: "https://github.com/danieltwentynine" },
-  { k: "X", label: "x.com/pickyhipster", href: "https://x.com/pickyhipster" },
-  { k: "INSTAGRAM", label: "instagram.com/daniel_m_cardoso", href: "https://www.instagram.com/daniel_m_cardoso" },
 ];
 
 function useActiveChapter() {
@@ -188,7 +175,7 @@ function AppInner() {
               <div className="spec-row"><span className="k">{t.focus}</span><span className="v">TypeScript · React · Node.js · n8n · OpenAI</span></div>
               <div className="spec-row">
                 <span className="k">{t.contact}</span>
-                <a href="mailto:danielmcardoso2016@protonmail.com" className="v dotted">danielmcardoso2016@protonmail.com</a>
+                <a href={`mailto:${personal.contact.email}`} className="v dotted">{personal.contact.email}</a>
               </div>
             </div>
           </div>
@@ -258,15 +245,15 @@ function AppInner() {
             <span className="sub">{t.experienceSub}</span>
           </div>
           <p className="lede" data-reveal>{t.aboutSummary}</p>
-          {t.jobs.map((job) => (
-            <article key={job.company} className="job" data-reveal>
+          {t.jobs.map((job, i) => (
+            <article key={job.role} className="job" data-reveal>
               <div className="job-when">
-                <span>{job.period}</span>
+                <span>{personal.jobs[i]?.period[lang]}</span>
                 <span className="loc">{job.location}</span>
               </div>
               <div>
                 <h3>{job.role}</h3>
-                <p className="company">{job.company}</p>
+                <p className="company">{personal.jobs[i]?.company}</p>
                 <ul>
                   {job.bullets.map((b) => (
                     <li key={b}><span>{b}</span></li>
@@ -285,12 +272,12 @@ function AppInner() {
           </div>
           <article className="job" data-reveal>
             <div className="job-when">
-              <span>{t.eduPeriod}</span>
+              <span>{personal.education.period[lang]}</span>
               <span className="loc">{t.eduLocation}</span>
             </div>
             <div>
               <h3>{t.eduTitle}</h3>
-              <p className="company">UNASP-HT</p>
+              <p className="company">{personal.education.institution}</p>
             </div>
           </article>
         </section>
@@ -303,7 +290,7 @@ function AppInner() {
           </div>
           <p className="contact-headline" data-reveal>{t.contactHeadline}</p>
           <div className="contact-list" data-reveal>
-            {CONTACT_LINKS.map((c) => (
+            {personal.contact.links.map((c) => (
               <div key={c.k} className="contact-row">
                 <span className="k">{c.k}</span>
                 <a href={c.href} {...(c.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}>
