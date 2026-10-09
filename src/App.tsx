@@ -178,7 +178,7 @@ function AppInner() {
             <div className="spec">
               <div className="spec-row"><span className="k">{t.role}</span><span className="v">{t.roleValue}</span></div>
               <div className="spec-row"><span className="k">{t.base}</span><span className="v">{t.baseValue}</span></div>
-              <div className="spec-row"><span className="k">{t.focus}</span><span className="v">TypeScript · React · Node.js · n8n · OpenAI</span></div>
+              <div className="spec-row"><span className="k">{t.focus}</span><span className="v">TypeScript · React · Node.js · Next.js · Claude Code</span></div>
               <div className="spec-row">
                 <span className="k">{t.contact}</span>
                 <a href={`mailto:${personal.contact.email}`} className="v dotted">{personal.contact.email}</a>
