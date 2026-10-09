@@ -41,13 +41,26 @@ export const translations = {
         description:
           "End-to-end WhatsApp pipeline: daily deliverable updates, event announcements, and birthday messages via WhatsApp Business API, n8n, and OpenAI.",
       },
+      {
+        title: "Dagleitv",
+        description:
+          "A web-based live streaming platform built with TypeScript, React, Next.js, WebRTC, and WebSockets for real-time communication.",
+      }
     ],
     skillsName: "Skills",
     skillsSub: "Capability Matrix",
     skillCategories: [
       {
         name: "Languages",
-        items: ["TypeScript", "JavaScript", "Python", "C/C++"],
+        items: [
+          "TypeScript", 
+          "JavaScript", 
+          "Python", 
+          "C/C++", 
+          "Assembly (Learning)",
+          "Bash", 
+          "PowerShell"
+        ],
       },
       {
         name: "Frontend",
@@ -69,12 +82,14 @@ export const translations = {
         name: "Automation & AI",
         items: [
           "n8n",
-          "Make",
-          "OpenAI API",
+          "ChatGPT Codex",
           "Claude Code",
           "WhatsApp Business API",
           "LLM Integration",
           "Prompt Engineering",
+          "Multi-agent Workflows",
+          "Agent-based Automation",
+          "RAG (Retrieval-Augmented Generation)"
         ],
       },
       {
@@ -173,13 +188,18 @@ export const translations = {
         description:
           "Pipeline de automação via WhatsApp: resumos de entregas diários, avisos de eventos e aniversários via WhatsApp Business API, n8n e OpenAI.",
       },
+      {
+        title: "Dagleitv",
+        description:
+          "Plataforma web de streaming ao vivo construída com TypeScript, React, Next.js, WebRTC e WebSockets para comunicação em tempo real.",
+      }
     ],
     skillsName: "Habilidades",
     skillsSub: "Matriz de Capacidades",
     skillCategories: [
       {
         name: "Linguagens",
-        items: ["TypeScript", "JavaScript", "Python", "C/C++"],
+        items: ["TypeScript", "JavaScript", "Python", "C/C++", "Assembly (Aprendizado)", "Bash", "PowerShell"],
       },
       {
         name: "Frontend",
@@ -201,12 +221,14 @@ export const translations = {
         name: "Automação & IA",
         items: [
           "n8n",
-          "Make",
-          "OpenAI API",
+          "ChatGPT Codex",
           "Claude Code",
           "WhatsApp Business API",
           "Integração LLM",
           "Prompt Engineering",
+          "Workflows Multi-agente",
+          "Automação Baseada em Agentes",
+          "RAG (Geração Aumentada por Recuperação)"
         ],
       },
       {

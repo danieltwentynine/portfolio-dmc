@@ -13,7 +13,7 @@ const PROJECT_META = [
   {
     stack: "Python · yt-dlp · Whisper · Ollama",
     github: "https://github.com/danieltwentynine/yt-analyzer",
-    live: null,
+    live: "local",
     corporate: false,
   },
   {
@@ -22,6 +22,12 @@ const PROJECT_META = [
     live: null,
     corporate: true,
   },
+  {
+    stack: "TypeScript · React · Next.js · WebRTC · Signaling · WebSockets",
+    github: "https://github.com/danieltwentynine/dagleitv",
+    live: "https://dagleitv.vercel.app/",
+    corporate: false,
+  }
 ];
 
 function useActiveChapter() {
