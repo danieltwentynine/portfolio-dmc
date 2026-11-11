@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import "./styles.css";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { useGrainOverlay } from "./hooks/useGrainOverlay";
 import { prefersReducedMotion } from "./hooks/usePrefersReducedMotion";
+import { useTheme } from "./hooks/useTheme";
 import { personal } from "./data/personal";
 import photo from "./img/danielPhoto.jpg";
 
@@ -29,6 +30,9 @@ const PROJECT_META = [
     corporate: false,
   }
 ];
+
+// Indexes into each `skillCategories[i].items` that stay visible when collapsed.
+const SKILL_CORE = [[0, 1, 2], [0, 2, 5], [0, 1], [0, 2, 4], [2], [0, 2, 3]];
 
 function useActiveChapter() {
   const [active, setActive] = useState("ch00");
@@ -76,12 +80,16 @@ function useReveals() {
   }, []);
 }
 
-function Portrait() {
+function Portrait({ light }: { light: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
+    // canvas can't read CSS variables, so the portrait carries its own copy of each theme's colors
+    const pal = light
+      ? { panel: "#e9e5db", ink: "27,26,24", accent: "#c23a26" }
+      : { panel: "#131315", ink: "232,230,224", accent: "#e85a45" };
     const img = new Image();
     img.onload = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -92,7 +100,7 @@ function Portrait() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = "#131315";
+      ctx.fillStyle = pal.panel;
       ctx.fillRect(0, 0, w, h);
       // sample the photo (cover-crop to 4:5)
       const cols = 64;
@@ -122,23 +130,50 @@ function Portrait() {
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
           const i = (r * cols + c) * 4;
-          const l = (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
+          const raw = (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
+          const l = light ? 1 - raw : raw; // on paper, dark areas carry the ink
           const ch = ramp[Math.min(ramp.length - 1, Math.floor(l * ramp.length))];
           if (ch === " ") continue;
-          ctx.fillStyle = l > 0.82 ? "#e85a45" : `rgba(232,230,224,${(0.18 + l * 0.72).toFixed(2)})`;
+          ctx.fillStyle = l > 0.82 ? pal.accent : `rgba(${pal.ink},${(0.18 + l * 0.72).toFixed(2)})`;
           ctx.fillText(ch, c * cellW, r * cellH);
         }
       }
     };
     img.src = photo;
-  }, []);
+    return () => {
+      img.onload = null;
+    };
+  }, [light]);
 
   return <canvas ref={ref} />;
+}
+
+function Collapse({ open, children }: { open: boolean; children: ReactNode }) {
+  return (
+    <div className={open ? "collapse open" : "collapse"} aria-hidden={!open}>
+      <div>{children}</div>
+    </div>
+  );
+}
+
+function Toggle({ open, onClick, children }: { open: boolean; onClick: () => void; children: ReactNode }) {
+  return (
+    <button className="toggle" aria-expanded={open} onClick={onClick}>
+      <span aria-hidden="true" className="icon">+</span>
+      {children}
+    </button>
+  );
 }
 
 function AppInner() {
   const { lang, t, setLang } = useLanguage();
   const active = useActiveChapter();
+  const [theme, toggleTheme] = useTheme();
+  const light = theme === "light";
+  // keys: "p<i>" project, "j<i>" job, "skills"
+  const [open, setOpen] = useState<Record<string, boolean>>({});
+  const flip = (key: string) => () => setOpen((o) => ({ ...o, [key]: !o[key] }));
+  const hiddenSkills = t.skillCategories.reduce((n, c, i) => n + c.items.length - SKILL_CORE[i].length, 0);
   useGrainOverlay();
   useReveals();
 
@@ -148,6 +183,9 @@ function AppInner() {
         <a href="#ch00" className="brand">{t.masthead}</a>
         <nav>
           <span className="file-tag">{t.fileLabel} DMC–2026</span>
+          <button className="theme-toggle" onClick={toggleTheme} aria-label={light ? t.themeToDark : t.themeToLight}>
+            <span aria-hidden="true">◐</span>
+          </button>
           <div className="lang-switch">
             <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
             <button className={lang === "pt" ? "on" : ""} onClick={() => setLang("pt")}>PT</button>
@@ -190,7 +228,7 @@ function AppInner() {
             <span aria-hidden="true" className="corner" style={{ top: -14, right: -14 }}>+</span>
             <span aria-hidden="true" className="corner" style={{ bottom: 14, left: -14 }}>+</span>
             <span aria-hidden="true" className="corner" style={{ bottom: 14, right: -14 }}>+</span>
-            <Portrait />
+            <Portrait light={light} />
             <div className="fig-caption">
               <span><span className="fig-no">FIG. 00</span> — {t.figSubject}</span>
               <span>{t.figSource}</span>
@@ -221,8 +259,20 @@ function AppInner() {
                 </div>
                 <div>
                   <h3>{p.title}</h3>
-                  <p className="desc">{p.description}</p>
-                  <p className="stack"><span className="stack-label">{t.stackLabel}</span> — {meta.stack}</p>
+                  <p className="desc">{p.summary ?? p.description}</p>
+                  {p.summary && (
+                    <Collapse open={!!open[`p${i}`]}>
+                      <p className="more">{p.description}</p>
+                    </Collapse>
+                  )}
+                  <ul className="chips" aria-label={t.stackLabel}>
+                    {meta.stack.split(" · ").map((tag) => <li key={tag}>{tag}</li>)}
+                  </ul>
+                  {p.summary && (
+                    <Toggle open={!!open[`p${i}`]} onClick={flip(`p${i}`)}>
+                      {open[`p${i}`] ? t.closeLabel : t.detailsLabel}
+                    </Toggle>
+                  )}
                 </div>
               </article>
             );
@@ -239,9 +289,21 @@ function AppInner() {
             <div key={c.name} className="skill-row" data-reveal>
               <span className="code">02.{i + 1}</span>
               <span className="name">{c.name}</span>
-              <span className="items">{c.items.join(" · ")}</span>
+              <div>
+                <ul className="chips">
+                  {c.items.filter((_, j) => SKILL_CORE[i].includes(j)).map((s) => <li key={s}>{s}</li>)}
+                </ul>
+                <Collapse open={!!open.skills}>
+                  <ul className="chips extra">
+                    {c.items.filter((_, j) => !SKILL_CORE[i].includes(j)).map((s) => <li key={s}>{s}</li>)}
+                  </ul>
+                </Collapse>
+              </div>
             </div>
           ))}
+          <Toggle open={!!open.skills} onClick={flip("skills")}>
+            {open.skills ? t.lessLabel : `${hiddenSkills} ${t.moreLabel}`}
+          </Toggle>
         </section>
 
         <section id="ch03">
@@ -250,7 +312,6 @@ function AppInner() {
             <h2>{t.experienceName}</h2>
             <span className="sub">{t.experienceSub}</span>
           </div>
-          <p className="lede" data-reveal>{t.aboutSummary}</p>
           {t.jobs.map((job, i) => (
             <article key={job.role} className="job" data-reveal>
               <div className="job-when">
@@ -261,10 +322,20 @@ function AppInner() {
                 <h3>{job.role}</h3>
                 <p className="company">{personal.jobs[i]?.company}</p>
                 <ul>
-                  {job.bullets.map((b) => (
+                  {job.highlights.map((b) => (
                     <li key={b}><span>{b}</span></li>
                   ))}
                 </ul>
+                <Collapse open={!!open[`j${i}`]}>
+                  <ul className="more">
+                    {job.bullets.slice(2).map((b) => (
+                      <li key={b}><span>{b}</span></li>
+                    ))}
+                  </ul>
+                </Collapse>
+                <Toggle open={!!open[`j${i}`]} onClick={flip(`j${i}`)}>
+                  {open[`j${i}`] ? t.closeLabel : t.detailsLabel}
+                </Toggle>
               </div>
             </article>
           ))}

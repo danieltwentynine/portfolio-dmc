@@ -25,19 +25,27 @@ export const translations = {
     figSource: "SRC: Photograph",
     scrollHint: "Scroll for more",
     projectsName: "Projects",
-    projectsSub: "Field Records — 2 Entries",
+    projectsSub: "Field Records — 3 Entries",
     stackLabel: "Stack",
     sourceLabel: "Source",
     liveLabel: "Live",
     corporateLabel: "Corporate",
+    detailsLabel: "Details",
+    closeLabel: "Close",
+    moreLabel: "more",
+    lessLabel: "Show less",
+    themeToLight: "Switch to light theme",
+    themeToDark: "Switch to dark theme",
     projects: [
       {
         title: "YouTube Analyzer",
+        summary: "Turns a YouTube video into a summary and mind map with a local LLM.",
         description:
           "CLI tool that downloads YouTube audio, transcribes with Whisper, and generates a summary, mind map, and metadata using a local LLM (Ollama/Mistral). No paid APIs.",
       },
       {
         title: "Internal Comms Automation",
+        summary: "Automated WhatsApp updates, event notices and birthday messages.",
         description:
           "End-to-end WhatsApp pipeline: daily deliverable updates, event announcements, and birthday messages via WhatsApp Business API, n8n, and OpenAI.",
       },
@@ -119,6 +127,10 @@ export const translations = {
       {
         role: "Automation Specialist & Full Stack Developer",
         location: "Barueri, SP · Hybrid",
+        highlights: [
+          "Automated internal communications with WhatsApp Business API, n8n and ChatGPT",
+          "Built full stack web apps with TypeScript and modern frameworks",
+        ],
         bullets: [
           "Built and maintained full stack web applications using HTML, CSS, TypeScript, and modern frameworks",
           "Automated internal communications by integrating WhatsApp Business API, n8n, and ChatGPT — covering deliverable updates, events, and birthdays",
@@ -130,6 +142,10 @@ export const translations = {
       {
         role: "Helpdesk Analyst",
         location: "Hortolândia, SP · On-site",
+        highlights: [
+          "Technical support for 200+ users across Windows, Mac and Linux",
+          "Managed accounts and security policies in Active Directory",
+        ],
         bullets: [
           "Provided technical support to 200+ users in a corporate Windows/Mac/Linux environment",
           "Managed accounts, groups, and security policies via Active Directory",
@@ -172,19 +188,27 @@ export const translations = {
     figSource: "SRC: Fotografia",
     scrollHint: "Role para continuar",
     projectsName: "Projetos",
-    projectsSub: "Registros de Campo — 2 Entradas",
+    projectsSub: "Registros de Campo — 3 Entradas",
     stackLabel: "Stack",
     sourceLabel: "Código",
     liveLabel: "Online",
     corporateLabel: "Corporativo",
+    detailsLabel: "Detalhes",
+    closeLabel: "Fechar",
+    moreLabel: "outras",
+    lessLabel: "Mostrar menos",
+    themeToLight: "Mudar para tema claro",
+    themeToDark: "Mudar para tema escuro",
     projects: [
       {
         title: "YouTube Analyzer",
+        summary: "Transforma um vídeo do YouTube em resumo e mapa mental com LLM local.",
         description:
           "CLI que baixa áudio do YouTube, transcreve com Whisper e gera resumo, mapa mental e metadados usando LLM local (Ollama/Mistral). Sem APIs pagas.",
       },
       {
         title: "Automação de Comunicação Interna",
+        summary: "Atualizações, avisos de eventos e aniversários automatizados via WhatsApp.",
         description:
           "Pipeline de automação via WhatsApp: resumos de entregas diários, avisos de eventos e aniversários via WhatsApp Business API, n8n e OpenAI.",
       },
@@ -258,6 +282,10 @@ export const translations = {
       {
         role: "Especialista em Automação & Dev Full Stack",
         location: "Barueri, SP · Híbrido",
+        highlights: [
+          "Automatizei a comunicação interna com WhatsApp Business API, n8n e ChatGPT",
+          "Desenvolvi aplicações web full stack com TypeScript e frameworks modernos",
+        ],
         bullets: [
           "Construí e mantive aplicações web full stack com HTML, CSS, TypeScript e frameworks modernos",
           "Automatizei comunicações internas via WhatsApp Business API, n8n e ChatGPT — entregas, eventos e aniversários",
@@ -269,6 +297,10 @@ export const translations = {
       {
         role: "Analista de Helpdesk",
         location: "Hortolândia, SP · Presencial",
+        highlights: [
+          "Suporte técnico a mais de 200 usuários em Windows, Mac e Linux",
+          "Gerenciei contas e políticas de segurança no Active Directory",
+        ],
         bullets: [
           "Forneci suporte técnico a 200+ usuários em ambiente Windows/Mac/Linux",
           "Gerenciei contas, grupos e políticas de segurança via Active Directory",

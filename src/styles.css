@@ -7,10 +7,37 @@
   --mut: #8f8d86;
   --dim: #56554f;
   --acc: #e85a45;
+  --text: #b5b3ac;
+  --thumb: #2a2a2e;
+  --header-bg: rgba(15, 15, 16, 0.88);
+  --grid-line: rgba(232, 230, 224, 0.028);
   --serif: "Instrument Serif", serif;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #f1eee6;
+  --panel: #e9e5db;
+  --line: #e0dcd2;
+  --line2: #d3cfc4;
+  --fg: #1b1a18;
+  --mut: #55534d;
+  --dim: #6e6b64;
+  --acc: #c23a26;
+  --text: #3a3936;
+  --thumb: #c9c5ba;
+  --header-bg: rgba(241, 238, 230, 0.88);
+  --grid-line: rgba(27, 26, 24, 0.05);
+  color-scheme: light;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+@media (prefers-reduced-motion: no-preference) {
+  /* theme switch cross-fade */
+  body, header, a, button, li, span, p, div, canvas {
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+  }
+}
 html { scroll-behavior: smooth; }
 ul, li { list-style: none; }
 
@@ -30,7 +57,7 @@ button { cursor: pointer; background: none; border: none; }
 ::selection { background: var(--acc); color: var(--bg); }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--line2); }
+::-webkit-scrollbar-thumb { background: var(--thumb); }
 ::-webkit-scrollbar-thumb:hover { background: var(--acc); }
 
 @keyframes cursorBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
@@ -55,7 +82,7 @@ button { cursor: pointer; background: none; border: none; }
   justify-content: space-between;
   align-items: center;
   padding: 14px 28px;
-  background: rgba(15, 15, 16, 0.88);
+  background: var(--header-bg);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
   font-size: 10px;
@@ -67,6 +94,17 @@ button { cursor: pointer; background: none; border: none; }
 .masthead .brand::before { content: "■"; color: var(--acc); }
 .masthead nav { display: flex; align-items: center; gap: 20px; }
 .masthead .file-tag { color: var(--dim); }
+.theme-toggle {
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--mut);
+  border: 1px solid var(--line2);
+  padding: 5px 8px;
+}
+.theme-toggle:hover { color: var(--acc); border-color: var(--acc); }
+.theme-toggle span { display: inline-block; transition: transform 0.6s var(--ease); }
+[data-theme="light"] .theme-toggle span { transform: rotate(180deg); }
 .lang-switch { display: flex; border: 1px solid var(--line2); }
 .lang-switch button {
   font-family: inherit;
@@ -122,8 +160,8 @@ main { max-width: 960px; margin: 0 auto; padding: 0 28px; }
   inset: 40px 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(232, 230, 224, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232, 230, 224, 0.028) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 90px 90px;
 }
 .hero-left { position: relative; }
@@ -227,6 +265,39 @@ a.dotted:hover { border-color: var(--acc); }
   color: var(--dim);
 }
 
+/* Collapsible details + chips */
+.collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.5s var(--ease), opacity 0.4s ease;
+}
+.collapse.open { grid-template-rows: 1fr; opacity: 1; }
+.collapse > div { overflow: hidden; min-height: 0; }
+.toggle {
+  font-family: inherit;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mut);
+  border-bottom: 1px dotted var(--mut);
+  padding: 0 0 2px;
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.toggle:hover { color: var(--acc); border-color: var(--acc); }
+.toggle .icon { display: inline-block; font-size: 12px; line-height: 1; transition: transform 0.45s var(--ease); }
+.toggle[aria-expanded="true"] .icon { transform: rotate(135deg); }
+@media (prefers-reduced-motion: reduce) {
+  .collapse, .toggle .icon, .theme-toggle span { transition: none; }
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips li { font-size: 10px; letter-spacing: 1px; color: var(--fg); border: 1px solid var(--line2); padding: 4px 10px; }
+.chips.extra { padding-top: 6px; }
+.chips.extra li { color: var(--mut); }
+
 /* Projects */
 .project {
   display: grid;
@@ -255,14 +326,21 @@ a.dotted:hover { border-color: var(--acc); }
 .project h3 { font-family: var(--serif); font-weight: 400; font-size: 30px; margin-bottom: 14px; }
 .project .desc {
   font-size: 13px;
-  line-height: 1.85;
-  color: var(--mut);
+  line-height: 1.75;
+  color: var(--text);
   max-width: 580px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   text-wrap: pretty;
 }
-.project .stack { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); }
-.project .stack .stack-label { color: var(--mut); }
+.project .more {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--mut);
+  max-width: 580px;
+  padding-bottom: 18px;
+  text-wrap: pretty;
+}
+.project .chips li { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--mut); padding: 4px 9px; }
 
 /* Skills */
 .skill-row {
@@ -275,19 +353,8 @@ a.dotted:hover { border-color: var(--acc); }
 }
 .skill-row .code { font-size: 10px; letter-spacing: 2px; color: var(--acc); }
 .skill-row .name { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--fg); }
-.skill-row .items { font-size: 12px; color: var(--mut); }
 
 /* Experience / Education */
-.lede {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 21px;
-  line-height: 1.6;
-  color: var(--mut);
-  max-width: 640px;
-  padding: 44px 0 10px;
-  text-wrap: pretty;
-}
 .job {
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -313,7 +380,10 @@ a.dotted:hover { border-color: var(--acc); }
 }
 .job .company:not(:last-child) { margin-bottom: 22px; }
 .job ul { display: flex; flex-direction: column; gap: 11px; }
-.job li { display: flex; gap: 14px; font-size: 13px; line-height: 1.75; color: var(--mut); max-width: 580px; }
+.job li { display: flex; gap: 14px; font-size: 13px; line-height: 1.75; color: var(--text); max-width: 580px; }
+.job ul.more { padding-top: 11px; }
+.job ul.more li { color: var(--mut); }
+.job .toggle { margin-top: 20px; }
 .job li::before { content: "—"; color: var(--acc); flex: none; }
 
 /* Contact */
