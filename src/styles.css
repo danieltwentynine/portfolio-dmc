@@ -427,5 +427,40 @@ footer .eof { color: var(--acc); }
   .rail { display: none; }
 }
 @media (max-width: 900px) {
+  main { padding: 0 20px; text-align: center; }
+
+  /* trimmed on small screens: decorative labels and the role row (repeats the subtitle) */
+  .portrait, .scroll-hint, .file-tag, .brand-rest, .sec-head .sub, .skill-row .code, .spec-row:first-child { display: none; }
+
+  .masthead { padding: 10px 16px; }
+  .masthead nav { gap: 10px; }
+  .theme-toggle { padding: 9px 11px; }
+  .lang-switch button { padding: 10px 12px; }
+
   .hero, .project, .skill-row, .job { grid-template-columns: 1fr; }
+  .hero { padding: 100px 0 48px; }
+  .hero h1 { font-size: clamp(52px, 17vw, 96px); }
+  .hero-subtitle { letter-spacing: 3px; margin-bottom: 36px; }
+  .spec, .contact-list, .project .desc, .project .more, .job li { max-width: none; }
+  .spec-row, .contact-row { flex-direction: column; align-items: center; gap: 2px; }
+  .spec-row .k, .contact-row .k { width: auto; }
+  .spec-row .v, .contact-row a { overflow-wrap: anywhere; }
+
+  .sec-head { justify-content: center; margin-top: 80px; }
+  #ch01 { padding-top: 0; }
+  #ch01 .sec-head { margin-top: 48px; }
+  .sec-head h2 { font-size: 38px; }
+
+  .project, .job { gap: 16px; padding: 36px 0; }
+  .project-meta { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; }
+  .chips { justify-content: center; }
+  .skill-row { gap: 10px; }
+  .job-when { align-items: center; }
+  .job li { display: block; }
+  .job li::before { margin-right: 8px; }
+  /* bigger tap target, same look */
+  .toggle, .job .toggle { padding-top: 12px; margin-top: 8px; }
+
+  .contact-headline { margin-bottom: 40px; }
+  footer { flex-direction: column; gap: 6px; }
 }

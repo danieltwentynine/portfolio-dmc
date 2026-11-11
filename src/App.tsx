@@ -107,13 +107,17 @@ function AppInner() {
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const flip = (key: string) => () => setOpen((o) => ({ ...o, [key]: !o[key] }));
   const hiddenSkills = t.skillCategories.reduce((n, c, i) => n + c.items.length - SKILL_CORE[i].length, 0);
+  const [brandName, brandRest] = t.masthead.split(" — ");
   useGrainOverlay();
   useReveals();
 
   return (
     <>
       <header className="masthead">
-        <a href="#ch00" className="brand">{t.masthead}</a>
+        <a href="#ch00" className="brand">
+          {brandName}
+          <span className="brand-rest">— {brandRest}</span>
+        </a>
         <nav>
           <span className="file-tag">{t.fileLabel} DMC–2026</span>
           <button className="theme-toggle" onClick={toggleTheme} aria-label={light ? t.themeToDark : t.themeToLight}>
@@ -161,7 +165,7 @@ function AppInner() {
             <span aria-hidden="true" className="corner" style={{ top: -14, right: -14 }}>+</span>
             <span aria-hidden="true" className="corner" style={{ bottom: 14, left: -14 }}>+</span>
             <span aria-hidden="true" className="corner" style={{ bottom: 14, right: -14 }}>+</span>
-            <img src={light ? photoLight : photoDark} alt={t.figSubject} width={1360} height={1700} />
+            <img src={light ? photoLight : photoDark} alt={t.figSubject} width={1360} height={1700} loading="lazy" />
             <div className="fig-caption">
               <span><span className="fig-no">FIG. 00</span> — {t.figSubject}</span>
               <span>{t.figSource}</span>
