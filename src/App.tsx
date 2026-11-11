@@ -13,7 +13,7 @@ const PROJECT_META = [
   {
     stack: "Python · yt-dlp · Whisper · Ollama",
     github: "https://github.com/danieltwentynine/yt-analyzer",
-    live: "local",
+    live: null,
     corporate: false,
   },
   {
