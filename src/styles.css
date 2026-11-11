@@ -214,8 +214,9 @@ a.dotted:hover { border-color: var(--acc); }
 
 .portrait { position: relative; }
 .portrait .corner { position: absolute; color: var(--dim); font-size: 12px; }
-.portrait canvas {
+.portrait img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 5;
   display: block;
   background: var(--panel);

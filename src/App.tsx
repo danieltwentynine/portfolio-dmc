@@ -1,11 +1,12 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import "./styles.css";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
 import { useGrainOverlay } from "./hooks/useGrainOverlay";
 import { prefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 import { useTheme } from "./hooks/useTheme";
 import { personal } from "./data/personal";
-import photo from "./img/danielPhoto.jpg";
+import photoDark from "./img/portrait-photo-dark.webp";
+import photoLight from "./img/portrait-photo-light.webp";
 
 const CHAPTER_IDS = ["ch00", "ch01", "ch02", "ch03", "ch04", "ch05"];
 
@@ -78,74 +79,6 @@ function useReveals() {
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
-}
-
-function Portrait({ light }: { light: boolean }) {
-  const ref = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas) return;
-    // canvas can't read CSS variables, so the portrait carries its own copy of each theme's colors
-    const pal = light
-      ? { panel: "#e9e5db", ink: "27,26,24", accent: "#c23a26" }
-      : { panel: "#131315", ink: "232,230,224", accent: "#e85a45" };
-    const img = new Image();
-    img.onload = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = canvas.clientWidth || 340;
-      const h = Math.round(w * 1.25);
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.fillStyle = pal.panel;
-      ctx.fillRect(0, 0, w, h);
-      // sample the photo (cover-crop to 4:5)
-      const cols = 64;
-      const rows = Math.round(cols * 1.25);
-      const off = document.createElement("canvas");
-      off.width = cols;
-      off.height = rows;
-      const octx = off.getContext("2d");
-      if (!octx) return;
-      const srcRatio = img.width / img.height;
-      const dstRatio = cols / rows;
-      let sw = img.width, sh = img.height, sx = 0, sy = 0;
-      if (srcRatio > dstRatio) {
-        sw = img.height * dstRatio;
-        sx = (img.width - sw) / 2;
-      } else {
-        sh = img.width / dstRatio;
-        sy = (img.height - sh) / 2;
-      }
-      octx.drawImage(img, sx, sy, sw, sh, 0, 0, cols, rows);
-      const data = octx.getImageData(0, 0, cols, rows).data;
-      const cellW = w / cols;
-      const cellH = h / rows;
-      const ramp = " .:-=+*#%@";
-      ctx.font = `${Math.ceil(cellH)}px 'IBM Plex Mono', monospace`;
-      ctx.textBaseline = "top";
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const i = (r * cols + c) * 4;
-          const raw = (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
-          const l = light ? 1 - raw : raw; // on paper, dark areas carry the ink
-          const ch = ramp[Math.min(ramp.length - 1, Math.floor(l * ramp.length))];
-          if (ch === " ") continue;
-          ctx.fillStyle = l > 0.82 ? pal.accent : `rgba(${pal.ink},${(0.18 + l * 0.72).toFixed(2)})`;
-          ctx.fillText(ch, c * cellW, r * cellH);
-        }
-      }
-    };
-    img.src = photo;
-    return () => {
-      img.onload = null;
-    };
-  }, [light]);
-
-  return <canvas ref={ref} />;
 }
 
 function Collapse({ open, children }: { open: boolean; children: ReactNode }) {
@@ -228,7 +161,7 @@ function AppInner() {
             <span aria-hidden="true" className="corner" style={{ top: -14, right: -14 }}>+</span>
             <span aria-hidden="true" className="corner" style={{ bottom: 14, left: -14 }}>+</span>
             <span aria-hidden="true" className="corner" style={{ bottom: 14, right: -14 }}>+</span>
-            <Portrait light={light} />
+            <img src={light ? photoLight : photoDark} alt={t.figSubject} width={1360} height={1700} />
             <div className="fig-caption">
               <span><span className="fig-no">FIG. 00</span> — {t.figSubject}</span>
               <span>{t.figSource}</span>
